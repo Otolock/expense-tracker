@@ -12,6 +12,7 @@ class NewTransactionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("NewTransactionViewController loaded")
 
         // Do any additional setup after loading the view.
     }
@@ -26,5 +27,4 @@ class NewTransactionViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
