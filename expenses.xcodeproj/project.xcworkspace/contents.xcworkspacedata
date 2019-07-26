@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:expenses.xcodeproj">
+      location = "self:/Users/antonio/Library/CloudStorage/iCloud Drive/Desktop/expenses/expenses.xcodeproj">
    </FileRef>
 </Workspace>

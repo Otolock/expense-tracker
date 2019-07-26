@@ -62,6 +62,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="uJG-cQ-Lnx">
                             <connections>
                                 <action selector="addEntryWithSender:" destination="BYZ-38-t0r" id="9K4-tO-71f"/>
+                                <segue destination="MLZ-48-rkm" kind="presentation" id="Z6d-am-3o1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -73,6 +74,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1957.9710144927537" y="138.61607142857142"/>
+        </scene>
+        <!--New Transaction-->
+        <scene sceneID="zxB-xg-4QK">
+            <objects>
+                <viewController id="MDp-83-ycb" customClass="NewTransactionViewController" customModule="expenses" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KV8-of-G9y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Pei-uv-COX"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Transaction" id="KyQ-BG-gfB">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="weo-fX-HVA"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4ol-57-YzO"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sDR-P6-pMJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3759.1999999999998" y="137.4384236453202"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3qn-6r-D7X">
@@ -91,6 +111,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EoK-fe-eJc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="138.61607142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gJU-Ii-br1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MLZ-48-rkm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="96E-ay-GzV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MDp-83-ycb" kind="relationship" relationship="rootViewController" id="qie-PD-DRO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hO6-09-1Nt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2816.8000000000002" y="137.4384236453202"/>
         </scene>
     </scenes>
 </document>

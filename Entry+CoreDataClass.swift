@@ -2,7 +2,7 @@
 //  Entry+CoreDataClass.swift
 //  expenses
 //
-//  Created by Antonio Santos on 7/24/19.
+//  Created by Antonio Santos on 7/25/19.
 //  Copyright © 2019 Antonio Santos. All rights reserved.
 //
 //

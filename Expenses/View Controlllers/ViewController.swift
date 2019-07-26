@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         
         // try to fetch data from CoreData. If successful, load into entries.
         do {
-            entries = try managedContext.fetch(Entry.createFetchRequest())
+            entries = try managedContext.fetch(Entry.fetchRequest())
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -78,46 +78,63 @@ class ViewController: UIViewController {
     }
     
     // MARK: - IBActions
-    @IBAction func addEntry(sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "New Name", message: "Add a new name", preferredStyle: .alert)
-        
-        let saveAction = UIAlertAction(title: "Save", style: .default) {
-            [unowned self] action in
-            
-            // create optional binding for alert text fields
-            guard let descriptionTextField = alert.textFields?[0], let entryDescription = descriptionTextField.text else {
-                return
-            }
-            
-            // TODO: need to add validation for amountTextField otherwise app will crash
-//            guard let amountTextField = alert.textFields?[1], let entryAmount = Double(amountTextField.text!) else {
+//    @IBAction func addEntry(sender: UIBarButtonItem) {
+//        let alert = UIAlertController(title: "New Name", message: "Add a new name", preferredStyle: .alert)
+//        
+//        let saveAction = UIAlertAction(title: "Save", style: .default) {
+//            [unowned self] action in
+//            
+//            // create optional binding for alert text fields
+//            guard let descriptionTextField = alert.textFields?[0], let entryDescription = descriptionTextField.text else {
 //                return
 //            }
-            
-            // data to send to Core Data
-            self.save(entryDescription: entryDescription, amount: 9.90)
-            self.saveContext()
-            self.tableView.reloadData()
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        
-        alert.addTextField()
+//            
+//            // TODO: need to add validation for amountTextField otherwise app will crash
+////            guard let amountTextField = alert.textFields?[1], let entryAmount = Double(amountTextField.text!) else {
+////                return
+////            }
+//            
+//            // data to send to Core Data
+//            self.save(entryDescription: entryDescription, amount: 9.90)
+//            self.saveContext()
+//            
+//            // reset the tableView to defaults if no data message was displayed before loading data.
+//            if self.tableView.backgroundView != nil {
+//                self.tableView.backgroundView = nil
+//                self.tableView.separatorStyle = .singleLine
+//            }
+//            self.tableView.reloadData()
+//        }
+//        
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+//        
 //        alert.addTextField()
-        
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true)
-    }
+////        alert.addTextField()
+//        
+//        alert.addAction(saveAction)
+//        alert.addAction(cancelAction)
+//        
+//        present(alert, animated: true)
+//    }
 }
 
 // MARK: - UITableViewDataSource
 extension ViewController: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
-        return entries.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (entries.count > 0) {
+            return entries.count
+        } else {
+            // if there is no data yet, display a friendly message.
+            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text = "Tap + to add your first transaction."
+            noDataLabel.textAlignment = .center
+            noDataLabel.lineBreakMode = .byWordWrapping
+            noDataLabel.numberOfLines = 0
+            tableView.backgroundView = noDataLabel
+            tableView.separatorStyle = .none
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
