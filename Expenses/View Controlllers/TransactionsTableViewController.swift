@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TransactionsTableViewController.swift
 //  expenses
 //
 //  Created by Antonio Santos on 7/24/19.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+class TransactionsTableViewController: UIViewController {
     // MARK: - Properties
     var entries: [NSManagedObject] = []
     var container: NSPersistentContainer!
@@ -119,7 +119,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: - UITableViewDataSource
-extension ViewController: UITableViewDataSource {
+extension TransactionsTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (entries.count > 0) {

@@ -11,7 +11,7 @@
         <!--Transactions-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="expenses" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="TransactionsTableViewController" customModule="expenses" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,10 +96,10 @@
                                                 <color key="textColor" cocoaTouchSystemColor="secondaryLabelColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. Lunch" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CFk-tx-xrL">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. Lunch" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CFk-tx-xrL">
                                                 <rect key="frame" x="0.0" y="19.333333333333329" width="343" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="yes" returnKeyType="next"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -112,10 +112,10 @@
                                                 <color key="textColor" cocoaTouchSystemColor="secondaryLabelColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3x-8z-MaP">
+                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.00" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="r3x-8z-MaP">
                                                 <rect key="frame" x="0.0" y="19.333333333333329" width="343" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -131,9 +131,23 @@
                         <viewLayoutGuide key="safeArea" id="Pei-uv-COX"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Transaction" id="KyQ-BG-gfB">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="weo-fX-HVA"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4ol-57-YzO"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="weo-fX-HVA">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="MDp-83-ycb" id="OHd-6O-rkW"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4ol-57-YzO">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="MDp-83-ycb" id="4BJ-02-UeU"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="transactionAmountLabel" destination="Bj3-hZ-UF8" id="33R-77-vgT"/>
+                        <outlet property="transactionAmountTextField" destination="r3x-8z-MaP" id="svd-1o-tTS"/>
+                        <outlet property="transactionDescriptionLabel" destination="Gxd-PS-ipy" id="CPN-wy-49r"/>
+                        <outlet property="transactionDescriptionTextField" destination="CFk-tx-xrL" id="Pgc-tg-Zmc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sDR-P6-pMJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
