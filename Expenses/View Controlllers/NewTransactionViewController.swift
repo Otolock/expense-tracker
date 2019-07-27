@@ -15,7 +15,7 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
      This value is either passed by `TransactionTableViewController` in `prepare(for:sender:)`
      or constructed as part of adding a new transaction.
      */
-    var entry: Entry?
+    weak var entry: Entry?
     
     // MARK: - IBOutlets
     @IBOutlet weak var transactionDescriptionLabel: UILabel!
@@ -56,16 +56,16 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: segue)
-        
+
         // Configure the destination view controller only when the save button is pressed.
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
             os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
             return
         }
-        
+
         let transactionDescription = transactionDescriptionTextField.text ?? ""
         let transactionAmount = Double(transactionAmountTextField.text!) ?? 0.00
-        
+
         // Set the entry to be passed to TransactionTableViewController after the unwind segue.
         entry?.setValue(transactionDescription, forKey: "entryDescription")
         entry?.setValue(transactionAmount, forKey: "amount")

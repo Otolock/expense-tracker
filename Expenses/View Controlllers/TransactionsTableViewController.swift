@@ -33,13 +33,12 @@ class TransactionsTableViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier! {
+        // this passes a reference to a new Entry to the NewTransactionViewController
         case "NewTransactionSegue":
-            // pass an entry to the destination segue
             let destination = segue.destination as! UINavigationController
             let targetController = destination.topViewController as! NewTransactionViewController
-            let managedContext = container.viewContext
-            let entity = NSEntityDescription.entity(forEntityName: "Entry", in: managedContext)!
-            let entry = NSManagedObject(entity: entity, insertInto: managedContext)
+            let entity = NSEntityDescription.entity(forEntityName: "Entry", in: container.viewContext)!
+            let entry = NSManagedObject(entity: entity, insertInto: container.viewContext)
             targetController.entry = entry as? Entry
         default:
             print("Unknown segue: \(segue.identifier!)")
@@ -47,11 +46,16 @@ class TransactionsTableViewController: UIViewController {
     }
     
     @IBAction func unwindToTransactionList(sender: UIStoryboardSegue) {
-        print("unwind segue called!")
         if let sourceViewController = sender.source as? NewTransactionViewController, let entry = sourceViewController.entry {
-            self.save(entryDescription: entry.entryDescription, amount: entry.amount, date: entry.date, id: entry.id)
-            self.saveContext()
-            
+            // Receive the entry back from the NewTransactionViewController, save it to the persistent storage and append
+            // it to the entries array for the tableView.
+            do {
+                try container.viewContext.save()
+                entries.append(entry)
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+
             // reset the tableView to defaults if no data message was displayed before loading data.
             if self.tableView.backgroundView != nil {
                 self.tableView.backgroundView = nil
@@ -74,28 +78,6 @@ class TransactionsTableViewController: UIViewController {
             entries = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
-    
-    // save a new entry to the data store
-    func save(entryDescription: String, amount: Double, date: Date, id: UUID) {
-        print("save called!!")
-        let managedContext = container.viewContext
-
-        let entity = NSEntityDescription.entity(forEntityName: "Entry", in: managedContext)!
-
-        let entry = NSManagedObject(entity: entity, insertInto: managedContext)
-
-        entry.setValue(entryDescription, forKey: "entryDescription")
-        entry.setValue(amount, forKey: "amount")
-        entry.setValue(date, forKey: "date")
-        entry.setValue(id, forKey: "id")
-
-        do {
-            try managedContext.save()
-            entries.append(entry)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
