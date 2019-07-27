@@ -63,7 +63,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="uJG-cQ-Lnx">
                             <connections>
                                 <action selector="addEntryWithSender:" destination="BYZ-38-t0r" id="9K4-tO-71f"/>
-                                <segue destination="MLZ-48-rkm" kind="presentation" id="Z6d-am-3o1"/>
+                                <segue destination="MLZ-48-rkm" kind="presentation" identifier="NewTransactionSegue" id="Z6d-am-3o1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -133,16 +133,19 @@
                     <navigationItem key="navigationItem" title="New Transaction" id="KyQ-BG-gfB">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="weo-fX-HVA">
                             <connections>
-                                <action selector="cancelButtonTapped:" destination="MDp-83-ycb" id="OHd-6O-rkW"/>
+                                <action selector="cancelButtonTappedWithSender:" destination="MDp-83-ycb" id="mMH-ib-oSF"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="4ol-57-YzO">
                             <connections>
-                                <action selector="saveButtonTapped:" destination="MDp-83-ycb" id="4BJ-02-UeU"/>
+                                <action selector="saveButtonTappedWithSender:" destination="MDp-83-ycb" id="Qav-Hu-TTk"/>
+                                <segue destination="nKb-XF-fYo" kind="unwind" unwindAction="unwindToTransactionListWithSender:" id="q3W-l1-32n"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelButton" destination="weo-fX-HVA" id="F2q-P9-uAD"/>
+                        <outlet property="saveButton" destination="4ol-57-YzO" id="dff-sA-pjf"/>
                         <outlet property="transactionAmountLabel" destination="Bj3-hZ-UF8" id="33R-77-vgT"/>
                         <outlet property="transactionAmountTextField" destination="r3x-8z-MaP" id="svd-1o-tTS"/>
                         <outlet property="transactionDescriptionLabel" destination="Gxd-PS-ipy" id="CPN-wy-49r"/>
@@ -150,6 +153,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sDR-P6-pMJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="nKb-XF-fYo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3759.1999999999998" y="137.4384236453202"/>
         </scene>

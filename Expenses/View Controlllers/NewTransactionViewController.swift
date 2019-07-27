@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreData
+import os.log
 
 class NewTransactionViewController: UIViewController, UITextFieldDelegate {
     /*
@@ -20,10 +22,12 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var transactionDescriptionTextField: UITextField!
     @IBOutlet var transactionAmountLabel: UILabel!
     @IBOutlet var transactionAmountTextField: UITextField!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
+    // MARK: Constants
     let TRANSACTION_DESCRIPTION_TEXT_FIELD_TAG = 0
     let TRANSACTION_AMOUNT_TEXT_FIELD_TAG = 1
-    
     
 
     override func viewDidLoad() {
@@ -47,21 +51,32 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: segue)
+        
+        // Configure the destination view controller only when the save button is pressed.
+        guard let button = sender as? UIBarButtonItem, button === saveButton else {
+            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            return
+        }
+        
+        let transactionDescription = transactionDescriptionTextField.text ?? ""
+        let transactionAmount = Double(transactionAmountTextField.text!) ?? 0.00
+        
+        // Set the entry to be passed to TransactionTableViewController after the unwind segue.
+        entry?.setValue(transactionDescription, forKey: "entryDescription")
+        entry?.setValue(transactionAmount, forKey: "amount")
+        entry?.setValue(UUID(), forKey: "id")
+        entry?.setValue(Date(), forKey: "date")
+    }
+    
     // MARK: - IBActions
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
     }
     
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
