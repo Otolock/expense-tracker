@@ -87,7 +87,7 @@ class TransactionsTableViewController: UIViewController {
             do {
                 try container.viewContext.save()
             } catch {
-                fatalError("An error occurred while saving: \(error)")
+                print("An error occurred while saving: \(error)")
             }
         }
     }
