@@ -18,8 +18,8 @@ extension Entry {
     }
 
     @NSManaged public var amount: Double
-    @NSManaged public var date: Date?
-    @NSManaged public var entryDescription: String?
-    @NSManaged public var id: UUID?
+    @NSManaged public var date: Date
+    @NSManaged public var entryDescription: String
+    @NSManaged public var id: UUID
 
 }
