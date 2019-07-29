@@ -51,6 +51,30 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // Change color of label describing text field to highlight focus
+        switch textField.tag {
+        case TRANSACTION_DESCRIPTION_TEXT_FIELD_TAG:
+            transactionDescriptionLabel.textColor = .systemBlue
+        case TRANSACTION_AMOUNT_TEXT_FIELD_TAG:
+            transactionAmountLabel.textColor = .systemBlue
+        default:
+            break
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        // Restore color of label describing text field
+        switch textField.tag {
+        case TRANSACTION_DESCRIPTION_TEXT_FIELD_TAG:
+            transactionDescriptionLabel.textColor = .secondaryLabel
+        case TRANSACTION_AMOUNT_TEXT_FIELD_TAG:
+            transactionAmountLabel.textColor = .secondaryLabel
+        default:
+            break
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
