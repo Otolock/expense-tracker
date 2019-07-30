@@ -122,8 +122,16 @@ extension TransactionsTableViewController: UITableViewDataSource {
         let entryDate = entry.value(forKey: "date") as? Date
         
         cell.transactionDescriptionLabel.text = entryDescription
-        cell.transactionAmountLabel.text = String(format: "$%.2f", entryAmount ?? 0.00)
         
+        //format entryAmount to currency.
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+
+        cell.transactionAmountLabel.text = numberFormatter.string(from: entryAmount! as NSNumber)
+
+//        cell.transactionAmountLabel.text = String(format: "$%.2f", entryAmount ?? 0.00)
+        
+        // format entryDate to relatativeDateFormatting
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .none
         dateFormatter.dateStyle = .medium
