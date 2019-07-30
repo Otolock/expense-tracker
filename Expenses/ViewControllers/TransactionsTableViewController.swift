@@ -17,6 +17,11 @@ class TransactionsTableViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet var tableView: UITableView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updatePersistentStorage()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +51,12 @@ class TransactionsTableViewController: UIViewController {
     }
     
     @IBAction func unwindToTransactionList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? NewTransactionViewController, let entry = sourceViewController.entry {
-            // Receive the entry back from the NewTransactionViewController, save it to the persistent storage and append
-            // it to the entries array for the tableView.
+        if sender.source is NewTransactionViewController {
+            // Receive the entry back from the NewTransactionViewController, save it to the persistent storage and
+            // update Persistent Storage.
             do {
                 try container.viewContext.save()
-                entries.append(entry)
+                updatePersistentStorage()
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
@@ -65,24 +70,27 @@ class TransactionsTableViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    // MARK: - Private Methods
+    // Update entries and reload table data.
+    private func updatePersistentStorage() {
         // load managedCOntext
         let managedContext = container.viewContext
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Entry")
+        let sortByDate = NSSortDescriptor(key: "date", ascending: false)
+        fetchRequest.sortDescriptors = [sortByDate]
         
         // try to fetch data from CoreData. If successful, load into entries.
         do {
             entries = try managedContext.fetch(fetchRequest)
+            tableView.reloadData()
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
     
     // save the current container context
-    func saveContext() {
+    private func saveContext() {
         if container.viewContext.hasChanges {
             do {
                 try container.viewContext.save()
@@ -127,9 +135,7 @@ extension TransactionsTableViewController: UITableViewDataSource {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currency
 
-        cell.transactionAmountLabel.text = numberFormatter.string(from: entryAmount! as NSNumber)
-
-//        cell.transactionAmountLabel.text = String(format: "$%.2f", entryAmount ?? 0.00)
+        cell.transactionAmountLabel.text = numberFormatter.string(from: entryAmount as NSNumber? ?? 0.00)
         
         // format entryDate to relatativeDateFormatting
         let dateFormatter = DateFormatter()
