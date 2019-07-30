@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14845" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OzM-gr-L3d">
-    <device id="retina5_9" orientation="portrait" appearance="dark"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14799.2"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -19,29 +19,50 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QXp-VB-5VN">
                                 <rect key="frame" x="0.0" y="140" width="375" height="589"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="transactionCell" textLabel="5uu-1r-6Xn" detailTextLabel="D59-tM-wI1" style="IBUITableViewCellStyleValue1" id="js9-X1-zaG">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="transactionCell" rowHeight="62" id="js9-X1-zaG" customClass="TransactionTableViewCell" customModule="expenses" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="js9-X1-zaG" id="FEA-Ia-4yN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5uu-1r-6Xn">
-                                                    <rect key="frame" x="15" y="11.999999999999998" width="32.333333333333336" height="20.333333333333332"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLy-rY-QAP">
+                                                    <rect key="frame" x="15" y="11" width="88" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D59-tM-wI1">
-                                                    <rect key="frame" x="312.33333333333331" y="11.999999999999998" width="47.666666666666664" height="20.333333333333332"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agd-NO-ecS">
+                                                    <rect key="frame" x="15.000000000000002" y="36" width="26.666666666666671" height="15"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLc-MB-KL8">
+                                                    <rect key="frame" x="300" y="11" width="60" height="13"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="agd-NO-ecS" firstAttribute="bottom" secondItem="FEA-Ia-4yN" secondAttribute="bottomMargin" id="3Ec-D0-y2g"/>
+                                                <constraint firstItem="pLc-MB-KL8" firstAttribute="top" secondItem="FEA-Ia-4yN" secondAttribute="topMargin" id="Es8-zg-QgX"/>
+                                                <constraint firstItem="agd-NO-ecS" firstAttribute="top" secondItem="BLy-rY-QAP" secondAttribute="bottom" constant="4" id="L9m-2E-RBq"/>
+                                                <constraint firstItem="agd-NO-ecS" firstAttribute="leading" secondItem="FEA-Ia-4yN" secondAttribute="leadingMargin" id="SBS-rl-NVb"/>
+                                                <constraint firstItem="pLc-MB-KL8" firstAttribute="trailing" secondItem="FEA-Ia-4yN" secondAttribute="trailingMargin" id="UHy-bb-2YQ"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="agd-NO-ecS" secondAttribute="trailing" id="VHd-rY-tAf"/>
+                                                <constraint firstItem="pLc-MB-KL8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BLy-rY-QAP" secondAttribute="trailing" constant="8" symbolic="YES" id="mE7-xe-XpC"/>
+                                                <constraint firstItem="BLy-rY-QAP" firstAttribute="top" secondItem="FEA-Ia-4yN" secondAttribute="topMargin" id="oM3-T9-eGj"/>
+                                                <constraint firstItem="BLy-rY-QAP" firstAttribute="leading" secondItem="FEA-Ia-4yN" secondAttribute="leadingMargin" id="qBj-hu-ncu"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="pLc-MB-KL8" secondAttribute="bottom" constant="27" id="zzM-Po-f9z"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="transactionAmountLabel" destination="pLc-MB-KL8" id="3sz-nc-yJC"/>
+                                            <outlet property="transactionDateLabel" destination="agd-NO-ecS" id="Hkj-aR-ehi"/>
+                                            <outlet property="transactionDescriptionLabel" destination="BLy-rY-QAP" id="5h6-Ee-xLN"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -74,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1957.9710144927537" y="138.61607142857142"/>
+            <point key="canvasLocation" x="1957.5999999999999" y="138.17733990147784"/>
         </scene>
         <!--New Transaction-->
         <scene sceneID="zxB-xg-4QK">
@@ -133,12 +154,11 @@
                     <navigationItem key="navigationItem" title="New Transaction" id="KyQ-BG-gfB">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="weo-fX-HVA">
                             <connections>
-                                <action selector="cancelButtonTappedWithSender:" destination="MDp-83-ycb" id="mMH-ib-oSF"/>
+                                <action selector="cancelButtonTappedWithSender:" destination="MDp-83-ycb" id="9NF-6a-Ocp"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="4ol-57-YzO">
                             <connections>
-                                <action selector="saveButtonTappedWithSender:" destination="MDp-83-ycb" id="Qav-Hu-TTk"/>
                                 <segue destination="nKb-XF-fYo" kind="unwind" unwindAction="unwindToTransactionListWithSender:" id="q3W-l1-32n"/>
                             </connections>
                         </barButtonItem>

@@ -113,16 +113,33 @@ extension TransactionsTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath) as! TransactionTableViewCell
         
         
         let entry = entries[indexPath.row]
         let entryDescription = entry.value(forKey: "entryDescription") as? String
         let entryAmount = entry.value(forKey: "amount") as? Double
+        let entryDate = entry.value(forKey: "date") as? Date
         
-        cell.textLabel!.text = entryDescription
-        cell.detailTextLabel!.text = String(format: "$%.2f", entryAmount ?? 0.00)
+        cell.transactionDescriptionLabel.text = entryDescription
+        cell.transactionAmountLabel.text = String(format: "$%.2f", entryAmount ?? 0.00)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateStyle = .medium
+        dateFormatter.locale = Locale.current
+        dateFormatter.doesRelativeDateFormatting = true
+        
+        cell.transactionDateLabel.text = (dateFormatter.string(from: entryDate!))
+        
         
         return cell
     }
+}
+
+// MARK: - TransactionTableViewCell
+class TransactionTableViewCell: UITableViewCell {
+    @IBOutlet weak var transactionDescriptionLabel: UILabel!
+    @IBOutlet weak var transactionDateLabel: UILabel!
+    @IBOutlet weak var transactionAmountLabel: UILabel!
 }
