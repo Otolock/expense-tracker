@@ -39,6 +39,9 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
         
         // Adds done button to keypad
         transactionAmountTextField.addDoneButtonToKeyboard(myAction: #selector(self.transactionAmountTextField.resignFirstResponder))
+        
+        // Enable the save button only if it has a valid Transaction name.
+        updateSaveButtonState()
     }
     
     // MARK: - UITextFieldDelegate
@@ -56,6 +59,7 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
         switch textField.tag {
         case TRANSACTION_DESCRIPTION_TEXT_FIELD_TAG:
             transactionDescriptionLabel.textColor = .systemBlue
+            saveButton.isEnabled = false // disable save button while text is being edited.
         case TRANSACTION_AMOUNT_TEXT_FIELD_TAG:
             transactionAmountLabel.textColor = .systemBlue
         default:
@@ -68,6 +72,16 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
         switch textField.tag {
         case TRANSACTION_DESCRIPTION_TEXT_FIELD_TAG:
             transactionDescriptionLabel.textColor = .secondaryLabel
+            updateSaveButtonState()
+            
+            // Only change the navigationItem title if the transactionDescriptionTextField is not empty
+            let text = textField.text ?? ""
+            if !text.isEmpty {
+                navigationItem.title = transactionDescriptionTextField.text
+            } else {
+                navigationItem.title = "New Transaction"
+            }
+            
         case TRANSACTION_AMOUNT_TEXT_FIELD_TAG:
             transactionAmountLabel.textColor = .secondaryLabel
         default:
@@ -99,8 +113,13 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - IBActions
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
+    // MARK: - Private Methods
+    private func updateSaveButtonState() {
+        // Disable the Save button if the text field is empty.
+        let text = transactionDescriptionTextField.text ?? ""
+        saveButton.isEnabled = !text.isEmpty
     }
 }
