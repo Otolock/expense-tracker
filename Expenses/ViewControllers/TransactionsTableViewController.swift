@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import os.log
 
 class TransactionsTableViewController: UIViewController {
     // MARK: - Properties
@@ -40,11 +41,26 @@ class TransactionsTableViewController: UIViewController {
         switch segue.identifier! {
         // this passes a reference to a new Entry to the NewTransactionViewController
         case "NewTransactionSegue":
+            os_log("Adding a new transaction.", log: OSLog.default, type: .debug)
             let destination = segue.destination as! UINavigationController
             let targetController = destination.topViewController as! NewTransactionViewController
-            let entity = NSEntityDescription.entity(forEntityName: "Entry", in: container.viewContext)!
-            let entry = NSManagedObject(entity: entity, insertInto: container.viewContext)
-            targetController.entry = entry as? Entry
+            targetController.managedContext = container.viewContext
+        case "ShowDetail":
+            guard let transactionDetailViewController = segue.destination as? NewTransactionViewController else {
+                fatalError("Unexpected Destination: \(segue.destination)")
+            }
+            
+            guard let selectedTransactionCell = sender as? TransactionTableViewCell else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+             
+            guard let indexPath = tableView.indexPath(for: selectedTransactionCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+             
+            let selectedTransaction = entries[indexPath.row]
+            transactionDetailViewController.managedContext = container.viewContext
+            transactionDetailViewController.entry = selectedTransaction as? Entry
         default:
             print("Unknown segue: \(segue.identifier!)")
         }
@@ -148,6 +164,17 @@ extension TransactionsTableViewController: UITableViewDataSource {
         
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let commit = entries[indexPath.row]
+            container.viewContext.delete(commit)
+            entries.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            saveContext()
+        }
     }
 }
 

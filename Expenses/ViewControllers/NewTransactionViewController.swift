@@ -16,6 +16,7 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
      or constructed as part of adding a new transaction.
      */
     weak var entry: Entry?
+    weak var managedContext: NSManagedObjectContext?
     
     // MARK: - IBOutlets
     @IBOutlet weak var transactionDescriptionLabel: UILabel!
@@ -39,6 +40,12 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
         
         // Adds done button to keypad
         transactionAmountTextField.addDoneButtonToKeyboard(myAction: #selector(self.transactionAmountTextField.resignFirstResponder))
+        
+        if let entry = entry {
+            navigationItem.title = entry.entryDescription
+            transactionDescriptionTextField.text = entry.entryDescription
+            transactionAmountTextField.text = String(format: "%.2f", entry.amount)
+        }
         
         // Enable the save button only if it has a valid Transaction name.
         updateSaveButtonState()
@@ -103,6 +110,24 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
 
         let transactionDescription = transactionDescriptionTextField.text ?? ""
         let transactionAmount = Double(transactionAmountTextField.text!) ?? 0.00
+        
+        if let entry = entry {
+            entry.entryDescription = transactionDescription
+            entry.amount = transactionAmount
+//            entry.setValue(transactionDescription, forKey: "entryDescription")
+//            entry.setValue(transactionAmount, forKey: "amouint")
+        } else {
+            let entity = NSEntityDescription.entity(forEntityName: "Entry", in: managedContext!)!
+            entry = NSManagedObject(entity: entity, insertInto: managedContext) as? Entry
+            
+            // Set the entry to be passed to TransactionTableViewController after the unwind segue.
+            entry?.setValue(transactionDescription, forKey: "entryDescription")
+            entry?.setValue(transactionAmount, forKey: "amount")
+            entry?.setValue(UUID(), forKey: "id")
+            entry?.setValue(Date(), forKey: "date")
+            
+            
+        }
 
         // Set the entry to be passed to TransactionTableViewController after the unwind segue.
         entry?.setValue(transactionDescription, forKey: "entryDescription")
@@ -113,7 +138,16 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - IBActions
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
+        let isPresentingInAddTransactionMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddTransactionMode {
+            dismiss(animated: true, completion: nil)
+        } else if let owningNavigationController = navigationController {
+            owningNavigationController.popViewController(animated: true)
+        } else {
+            fatalError("The NewTransactionViewController is not inside a navigation controller.")
+        }
     }
     
     // MARK: - Private Methods
