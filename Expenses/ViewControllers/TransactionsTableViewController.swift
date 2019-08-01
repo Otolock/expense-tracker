@@ -12,7 +12,7 @@ import os.log
 
 class TransactionsTableViewController: UIViewController {
     // MARK: - Properties
-    var entries: [NSManagedObject] = []
+    var transactions: [NSManagedObject] = []
     var container: NSPersistentContainer!
     
     // MARK: - IBOutlets
@@ -28,7 +28,7 @@ class TransactionsTableViewController: UIViewController {
         super.viewDidLoad()
         
         // setup persistent container
-        container = NSPersistentContainer(name: "expenses")
+        container = NSPersistentContainer(name: "Benjamin")
         // load store
         container.loadPersistentStores { storeDescription, error in
             if let error = error {
@@ -39,14 +39,14 @@ class TransactionsTableViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier! {
-        // this passes a reference to a new Entry to the NewTransactionViewController
+        // this passes a reference to a new Entry to the TransactionDetailViewController
         case "NewTransactionSegue":
             os_log("Adding a new transaction.", log: OSLog.default, type: .debug)
             let destination = segue.destination as! UINavigationController
-            let targetController = destination.topViewController as! NewTransactionViewController
+            let targetController = destination.topViewController as! TransactionDetailViewController
             targetController.managedContext = container.viewContext
         case "ShowDetail":
-            guard let transactionDetailViewController = segue.destination as? NewTransactionViewController else {
+            guard let transactionDetailViewController = segue.destination as? TransactionDetailViewController else {
                 fatalError("Unexpected Destination: \(segue.destination)")
             }
             
@@ -58,17 +58,17 @@ class TransactionsTableViewController: UIViewController {
                 fatalError("The selected cell is not being displayed by the table")
             }
              
-            let selectedTransaction = entries[indexPath.row]
+            let selectedTransaction = transactions[indexPath.row]
             transactionDetailViewController.managedContext = container.viewContext
-            transactionDetailViewController.entry = selectedTransaction as? Entry
+            transactionDetailViewController.transaction = selectedTransaction as? Transaction
         default:
             print("Unknown segue: \(segue.identifier!)")
         }
     }
     
     @IBAction func unwindToTransactionList(sender: UIStoryboardSegue) {
-        if sender.source is NewTransactionViewController {
-            // Receive the entry back from the NewTransactionViewController, save it to the persistent storage and
+        if sender.source is TransactionDetailViewController {
+            // Receive the transaction back from the TransactionDetailViewController, save it to the persistent storage and
             // update Persistent Storage.
             do {
                 try container.viewContext.save()
@@ -87,18 +87,18 @@ class TransactionsTableViewController: UIViewController {
     }
     
     // MARK: - Private Methods
-    // Update entries and reload table data.
+    // Update transactions and reload table data.
     private func updatePersistentStorage() {
         // load managedCOntext
         let managedContext = container.viewContext
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Entry")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Transaction")
         let sortByDate = NSSortDescriptor(key: "date", ascending: false)
         fetchRequest.sortDescriptors = [sortByDate]
         
-        // try to fetch data from CoreData. If successful, load into entries.
+        // try to fetch data from CoreData. If successful, load into transactions.
         do {
-            entries = try managedContext.fetch(fetchRequest)
+            transactions = try managedContext.fetch(fetchRequest)
             tableView.reloadData()
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
@@ -121,8 +121,8 @@ class TransactionsTableViewController: UIViewController {
 extension TransactionsTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (entries.count > 0) {
-            return entries.count
+        if (transactions.count > 0) {
+            return transactions.count
         } else {
             // if there is no data yet, display a friendly message.
             let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
@@ -140,27 +140,27 @@ extension TransactionsTableViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath) as! TransactionTableViewCell
         
         
-        let entry = entries[indexPath.row]
-        let entryDescription = entry.value(forKey: "entryDescription") as? String
-        let entryAmount = entry.value(forKey: "amount") as? Double
-        let entryDate = entry.value(forKey: "date") as? Date
+        let transaction = transactions[indexPath.row]
+        let transactionName = transaction.value(forKey: "name") as? String
+        let transactionAmount = transaction.value(forKey: "amount") as? Double
+        let transactionDate = transaction.value(forKey: "date") as? Date
         
-        cell.transactionDescriptionLabel.text = entryDescription
+        cell.transactionDescriptionLabel.text = transactionName
         
-        //format entryAmount to currency.
+        //format transactionAmount to currency.
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currency
 
-        cell.transactionAmountLabel.text = numberFormatter.string(from: entryAmount as NSNumber? ?? 0.00)
+        cell.transactionAmountLabel.text = numberFormatter.string(from: transactionAmount as NSNumber? ?? 0.00)
         
-        // format entryDate to relatativeDateFormatting
+        // format transactionDate to relatativeDateFormatting
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .none
         dateFormatter.dateStyle = .medium
         dateFormatter.locale = Locale.current
         dateFormatter.doesRelativeDateFormatting = true
         
-        cell.transactionDateLabel.text = (dateFormatter.string(from: entryDate!))
+        cell.transactionDateLabel.text = (dateFormatter.string(from: transactionDate!))
         
         
         return cell
@@ -168,9 +168,9 @@ extension TransactionsTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let commit = entries[indexPath.row]
+            let commit = transactions[indexPath.row]
             container.viewContext.delete(commit)
-            entries.remove(at: indexPath.row)
+            transactions.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             
             saveContext()

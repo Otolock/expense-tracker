@@ -7,24 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A920CFCA22EBCA640052D76E /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A920CFC822EBCA640052D76E /* Entry+CoreDataClass.swift */; };
-		A920CFCB22EBCA640052D76E /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A920CFC922EBCA640052D76E /* Entry+CoreDataProperties.swift */; };
 		A962A62722EBD0D2009DD3CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A962A62522EBD0D2009DD3CD /* Main.storyboard */; };
-		A962A62922EBD0DD009DD3CD /* NewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A62822EBD0DD009DD3CD /* NewTransactionViewController.swift */; };
+		A962A62922EBD0DD009DD3CD /* TransactionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A62822EBD0DD009DD3CD /* TransactionDetailViewController.swift */; };
 		A99C9D0F22EE8057007898C5 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99C9D0E22EE8057007898C5 /* UITextField.swift */; };
 		A9B668BA22E9287300DFF4D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B668B922E9287300DFF4D6 /* AppDelegate.swift */; };
 		A9B668BC22E9287300DFF4D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B668BB22E9287300DFF4D6 /* SceneDelegate.swift */; };
-		A9B668C422E9287300DFF4D6 /* expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9B668C222E9287300DFF4D6 /* expenses.xcdatamodeld */; };
+		A9B668C422E9287300DFF4D6 /* Benjamin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9B668C222E9287300DFF4D6 /* Benjamin.xcdatamodeld */; };
 		A9B668C622E9287500DFF4D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9B668C522E9287500DFF4D6 /* Assets.xcassets */; };
 		A9B668C922E9287500DFF4D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9B668C722E9287500DFF4D6 /* LaunchScreen.storyboard */; };
 		A9B668D322E9333400DFF4D6 /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B668D222E9333400DFF4D6 /* TransactionsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A920CFC822EBCA640052D76E /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A920CFC922EBCA640052D76E /* Entry+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A962A62622EBD0D2009DD3CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A962A62822EBD0DD009DD3CD /* NewTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTransactionViewController.swift; sourceTree = "<group>"; };
+		A962A62822EBD0DD009DD3CD /* TransactionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailViewController.swift; sourceTree = "<group>"; };
 		A99C9D0E22EE8057007898C5 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		A9B668B622E9287300DFF4D6 /* expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B668B922E9287300DFF4D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +46,7 @@
 		A95B623E22EAB1040089D47A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A962A62822EBD0DD009DD3CD /* NewTransactionViewController.swift */,
+				A962A62822EBD0DD009DD3CD /* TransactionDetailViewController.swift */,
 				A9B668D222E9333400DFF4D6 /* TransactionsTableViewController.swift */,
 			);
 			path = ViewControllers;
@@ -59,8 +55,6 @@
 		A95B624022EAB1270089D47A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A920CFC822EBCA640052D76E /* Entry+CoreDataClass.swift */,
-				A920CFC922EBCA640052D76E /* Entry+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -101,7 +95,7 @@
 				A9B668C722E9287500DFF4D6 /* LaunchScreen.storyboard */,
 				A962A62522EBD0D2009DD3CD /* Main.storyboard */,
 				A9B668CA22E9287500DFF4D6 /* Info.plist */,
-				A9B668C222E9287300DFF4D6 /* expenses.xcdatamodeld */,
+				A9B668C222E9287300DFF4D6 /* Benjamin.xcdatamodeld */,
 			);
 			path = Expenses;
 			sourceTree = "<group>";
@@ -177,13 +171,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9B668C422E9287300DFF4D6 /* expenses.xcdatamodeld in Sources */,
-				A920CFCB22EBCA640052D76E /* Entry+CoreDataProperties.swift in Sources */,
+				A9B668C422E9287300DFF4D6 /* Benjamin.xcdatamodeld in Sources */,
 				A99C9D0F22EE8057007898C5 /* UITextField.swift in Sources */,
 				A9B668BA22E9287300DFF4D6 /* AppDelegate.swift in Sources */,
-				A962A62922EBD0DD009DD3CD /* NewTransactionViewController.swift in Sources */,
+				A962A62922EBD0DD009DD3CD /* TransactionDetailViewController.swift in Sources */,
 				A9B668D322E9333400DFF4D6 /* TransactionsTableViewController.swift in Sources */,
-				A920CFCA22EBCA640052D76E /* Entry+CoreDataClass.swift in Sources */,
 				A9B668BC22E9287300DFF4D6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,7 +327,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.antoniosantos.expenses;
+				PRODUCT_BUNDLE_IDENTIFIER = io.antoniosantos.Benjamin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -353,7 +345,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.antoniosantos.expenses;
+				PRODUCT_BUNDLE_IDENTIFIER = io.antoniosantos.Benjamin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -384,13 +376,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		A9B668C222E9287300DFF4D6 /* expenses.xcdatamodeld */ = {
+		A9B668C222E9287300DFF4D6 /* Benjamin.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				A9B668C322E9287300DFF4D6 /* expenses.xcdatamodel */,
 			);
 			currentVersion = A9B668C322E9287300DFF4D6 /* expenses.xcdatamodel */;
-			path = expenses.xcdatamodeld;
+			path = Benjamin.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

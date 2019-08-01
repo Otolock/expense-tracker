@@ -1,5 +1,5 @@
 //
-//  NewTransactionViewController.swift
+//  TransactionDetailViewController.swift
 //  expenses
 //
 //  Created by Antonio Santos on 7/26/19.
@@ -10,12 +10,12 @@ import UIKit
 import CoreData
 import os.log
 
-class NewTransactionViewController: UIViewController, UITextFieldDelegate {
+class TransactionDetailViewController: UIViewController, UITextFieldDelegate {
     /*
      This value is either passed by `TransactionTableViewController` in `prepare(for:sender:)`
      or constructed as part of adding a new transaction.
      */
-    weak var entry: Entry?
+    weak var transaction: Transaction?
     weak var managedContext: NSManagedObjectContext?
     
     // MARK: - IBOutlets
@@ -41,10 +41,10 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
         // Adds done button to keypad
         transactionAmountTextField.addDoneButtonToKeyboard(myAction: #selector(self.transactionAmountTextField.resignFirstResponder))
         
-        if let entry = entry {
-            navigationItem.title = entry.entryDescription
-            transactionDescriptionTextField.text = entry.entryDescription
-            transactionAmountTextField.text = String(format: "%.2f", entry.amount)
+        if let transaction = transaction {
+            navigationItem.title = transaction.name
+            transactionDescriptionTextField.text = transaction.name
+            transactionAmountTextField.text = String(format: "%.2f", transaction.amount)
         }
         
         // Enable the save button only if it has a valid Transaction name.
@@ -111,29 +111,21 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
         let transactionDescription = transactionDescriptionTextField.text ?? ""
         let transactionAmount = Double(transactionAmountTextField.text!) ?? 0.00
         
-        if let entry = entry {
-            entry.entryDescription = transactionDescription
-            entry.amount = transactionAmount
-//            entry.setValue(transactionDescription, forKey: "entryDescription")
-//            entry.setValue(transactionAmount, forKey: "amouint")
+        if let transaction = transaction {
+            transaction.name = transactionDescription
+            transaction.amount = transactionAmount
         } else {
-            let entity = NSEntityDescription.entity(forEntityName: "Entry", in: managedContext!)!
-            entry = NSManagedObject(entity: entity, insertInto: managedContext) as? Entry
+            let entity = NSEntityDescription.entity(forEntityName: "Transaction", in: managedContext!)!
+            transaction = NSManagedObject(entity: entity, insertInto: managedContext) as? Transaction
             
-            // Set the entry to be passed to TransactionTableViewController after the unwind segue.
-            entry?.setValue(transactionDescription, forKey: "entryDescription")
-            entry?.setValue(transactionAmount, forKey: "amount")
-            entry?.setValue(UUID(), forKey: "id")
-            entry?.setValue(Date(), forKey: "date")
+            // Set the transaction to be passed to TransactionTableViewController after the unwind segue.
+            transaction?.setValue(transactionDescription, forKey: "name")
+            transaction?.setValue(transactionAmount, forKey: "amount")
+            transaction?.setValue(UUID(), forKey: "id")
+            transaction?.setValue(Date(), forKey: "date")
             
             
         }
-
-        // Set the entry to be passed to TransactionTableViewController after the unwind segue.
-        entry?.setValue(transactionDescription, forKey: "entryDescription")
-        entry?.setValue(transactionAmount, forKey: "amount")
-        entry?.setValue(UUID(), forKey: "id")
-        entry?.setValue(Date(), forKey: "date")
     }
     
     // MARK: - IBActions
@@ -146,7 +138,7 @@ class NewTransactionViewController: UIViewController, UITextFieldDelegate {
         } else if let owningNavigationController = navigationController {
             owningNavigationController.popViewController(animated: true)
         } else {
-            fatalError("The NewTransactionViewController is not inside a navigation controller.")
+            fatalError("The TransactionDetailViewController is not inside a navigation controller.")
         }
     }
     
