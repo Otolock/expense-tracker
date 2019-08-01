@@ -42,11 +42,19 @@ class TransactionsTableViewController: UIViewController {
         // this passes a reference to a new Entry to the TransactionDetailViewController
         case "NewTransactionSegue":
             os_log("Adding a new transaction.", log: OSLog.default, type: .debug)
-            let destination = segue.destination as! UINavigationController
-            let targetController = destination.topViewController as! TransactionDetailViewController
+            
+            guard let destination = segue.destination as? UINavigationController else {
+                fatalError("Unexpected Destination: \(segue.destination)")
+            }
+            
+            guard let targetController = destination.topViewController as? TransactionDetailViewController else {
+                fatalError("Unexpected Target Controller: \(destination.topViewController!)")
+            }
+            
             targetController.managedContext = container.viewContext
         case "ShowDetail":
-            guard let transactionDetailViewController = segue.destination as? TransactionDetailViewController else {
+            os_log("Showing transaction detail.", log: OSLog.default, type: .debug)
+            guard let destination = segue.destination as? TransactionDetailViewController else {
                 fatalError("Unexpected Destination: \(segue.destination)")
             }
             
@@ -59,8 +67,8 @@ class TransactionsTableViewController: UIViewController {
             }
              
             let selectedTransaction = transactions[indexPath.row]
-            transactionDetailViewController.managedContext = container.viewContext
-            transactionDetailViewController.transaction = selectedTransaction as? Transaction
+            destination.managedContext = container.viewContext
+            destination.transaction = selectedTransaction as? Transaction
         default:
             print("Unknown segue: \(segue.identifier!)")
         }
@@ -109,6 +117,7 @@ class TransactionsTableViewController: UIViewController {
     private func saveContext() {
         if container.viewContext.hasChanges {
             do {
+                os_log("Saving context...", log: OSLog.default, type: .debug)
                 try container.viewContext.save()
             } catch {
                 print("An error occurred while saving: \(error)")
