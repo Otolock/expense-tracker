@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import os.log
 
 class TransactionsTableViewController: UITableViewController {
     var container: NSPersistentContainer!
@@ -23,13 +24,6 @@ class TransactionsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        let tabBar = UITabBarController() as? TabBarViewController
-        container = tabBar?.container
     }
 
     // MARK: - Table view data source
@@ -89,17 +83,27 @@ class TransactionsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        if let nextVC = segue.destination as? UINavigationController {
-            let targetDestination = nextVC.topViewController as? TransactionDetailTableViewController
-            targetDestination?.container = self.container
+        switch segue.identifier! {
+        // this passes a reference to a new Entry to the TransactionDetailViewController
+        case "NewTransaction":
+            os_log("Adding a new transaction.", log: OSLog.default, type: .debug)
+            
+            guard let destination = segue.destination as? UINavigationController else {
+                fatalError("Unexpected Destination: \(segue.destination)")
+            }
+            
+            guard let targetController = destination.topViewController as? TransactionDetailTableViewController else {
+                fatalError("Unexpected Target Controller: \(destination.topViewController!)")
+            }
+            
+            targetController.container = container
+        default:
+            print("Unknown segue: \(segue.identifier!)")
         }
     }
-    */
 }

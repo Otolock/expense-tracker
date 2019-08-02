@@ -111,7 +111,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VBT-IK-gh7">
                             <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="8lP-av-bsj" kind="presentation" modalPresentationStyle="fullScreen" id="cUK-tt-Q7a"/>
+                                <segue destination="8lP-av-bsj" kind="presentation" identifier="NewTransaction" modalPresentationStyle="fullScreen" id="cUK-tt-Q7a"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
