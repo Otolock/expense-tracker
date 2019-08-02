@@ -1,5 +1,5 @@
 //
-//  TransactionsTableViewController.swift
+//  TransactionDetailTableViewController.swift
 //  expenses
 //
 //  Created by Antonio Santos on 8/1/19.
@@ -9,9 +9,13 @@
 import UIKit
 import CoreData
 
-class TransactionsTableViewController: UITableViewController {
+class TransactionDetailTableViewController: UITableViewController {
+    var transaction: Transaction!
     var container: NSPersistentContainer!
-
+    
+    // MARK: - IBOutlets
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard container != nil else {
@@ -23,13 +27,6 @@ class TransactionsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        let tabBar = UITabBarController() as? TabBarViewController
-        container = tabBar?.container
     }
 
     // MARK: - Table view data source
@@ -96,10 +93,11 @@ class TransactionsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if let nextVC = segue.destination as? UINavigationController {
-            let targetDestination = nextVC.topViewController as? TransactionDetailTableViewController
-            targetDestination?.container = self.container
-        }
     }
     */
+
+    // MARK: -IBActions
+    @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }

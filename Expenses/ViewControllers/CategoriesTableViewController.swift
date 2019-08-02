@@ -1,5 +1,5 @@
 //
-//  TransactionsTableViewController.swift
+//  CategoriesTableViewController.swift
 //  expenses
 //
 //  Created by Antonio Santos on 8/1/19.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TransactionsTableViewController: UITableViewController {
+class CategoriesTableViewController: UITableViewController {
     var container: NSPersistentContainer!
 
     override func viewDidLoad() {
@@ -96,10 +96,7 @@ class TransactionsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if let nextVC = segue.destination as? UINavigationController {
-            let targetDestination = nextVC.topViewController as? TransactionDetailTableViewController
-            targetDestination?.container = self.container
-        }
     }
     */
+
 }

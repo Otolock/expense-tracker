@@ -8,19 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		A962A62722EBD0D2009DD3CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A962A62522EBD0D2009DD3CD /* Main.storyboard */; };
-		A962A62922EBD0DD009DD3CD /* TransactionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A62822EBD0DD009DD3CD /* TransactionDetailViewController.swift */; };
+		A993443D22F3EBE500AF178E /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A993443C22F3EBE500AF178E /* TransactionsTableViewController.swift */; };
+		A993443F22F3EC1D00AF178E /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A993443E22F3EC1D00AF178E /* CategoriesTableViewController.swift */; };
+		A993444122F3EC7500AF178E /* TransactionDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A993444022F3EC7500AF178E /* TransactionDetailTableViewController.swift */; };
+		A993444322F3FBBC00AF178E /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A993444222F3FBBC00AF178E /* TabBarViewController.swift */; };
+		A993444522F3FC8700AF178E /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A993444422F3FC8700AF178E /* PersistentContainer.swift */; };
 		A99C9D0F22EE8057007898C5 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99C9D0E22EE8057007898C5 /* UITextField.swift */; };
 		A9B668BA22E9287300DFF4D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B668B922E9287300DFF4D6 /* AppDelegate.swift */; };
 		A9B668BC22E9287300DFF4D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B668BB22E9287300DFF4D6 /* SceneDelegate.swift */; };
 		A9B668C422E9287300DFF4D6 /* Benjamin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9B668C222E9287300DFF4D6 /* Benjamin.xcdatamodeld */; };
 		A9B668C622E9287500DFF4D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9B668C522E9287500DFF4D6 /* Assets.xcassets */; };
 		A9B668C922E9287500DFF4D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9B668C722E9287500DFF4D6 /* LaunchScreen.storyboard */; };
-		A9B668D322E9333400DFF4D6 /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B668D222E9333400DFF4D6 /* TransactionsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A962A62622EBD0D2009DD3CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A962A62822EBD0DD009DD3CD /* TransactionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailViewController.swift; sourceTree = "<group>"; };
+		A993443C22F3EBE500AF178E /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewController.swift; sourceTree = "<group>"; };
+		A993443E22F3EC1D00AF178E /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
+		A993444022F3EC7500AF178E /* TransactionDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailTableViewController.swift; sourceTree = "<group>"; };
+		A993444222F3FBBC00AF178E /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		A993444422F3FC8700AF178E /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		A99C9D0E22EE8057007898C5 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		A9B668B622E9287300DFF4D6 /* expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B668B922E9287300DFF4D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -29,7 +36,6 @@
 		A9B668C522E9287500DFF4D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9B668C822E9287500DFF4D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9B668CA22E9287500DFF4D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A9B668D222E9333400DFF4D6 /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,8 +52,10 @@
 		A95B623E22EAB1040089D47A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A962A62822EBD0DD009DD3CD /* TransactionDetailViewController.swift */,
-				A9B668D222E9333400DFF4D6 /* TransactionsTableViewController.swift */,
+				A993443C22F3EBE500AF178E /* TransactionsTableViewController.swift */,
+				A993443E22F3EC1D00AF178E /* CategoriesTableViewController.swift */,
+				A993444022F3EC7500AF178E /* TransactionDetailTableViewController.swift */,
+				A993444222F3FBBC00AF178E /* TabBarViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -96,6 +104,7 @@
 				A962A62522EBD0D2009DD3CD /* Main.storyboard */,
 				A9B668CA22E9287500DFF4D6 /* Info.plist */,
 				A9B668C222E9287300DFF4D6 /* Benjamin.xcdatamodeld */,
+				A993444422F3FC8700AF178E /* PersistentContainer.swift */,
 			);
 			path = Expenses;
 			sourceTree = "<group>";
@@ -171,12 +180,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A993444322F3FBBC00AF178E /* TabBarViewController.swift in Sources */,
 				A9B668C422E9287300DFF4D6 /* Benjamin.xcdatamodeld in Sources */,
 				A99C9D0F22EE8057007898C5 /* UITextField.swift in Sources */,
+				A993443D22F3EBE500AF178E /* TransactionsTableViewController.swift in Sources */,
 				A9B668BA22E9287300DFF4D6 /* AppDelegate.swift in Sources */,
-				A962A62922EBD0DD009DD3CD /* TransactionDetailViewController.swift in Sources */,
-				A9B668D322E9333400DFF4D6 /* TransactionsTableViewController.swift in Sources */,
+				A993444122F3EC7500AF178E /* TransactionDetailTableViewController.swift in Sources */,
 				A9B668BC22E9287300DFF4D6 /* SceneDelegate.swift in Sources */,
+				A993443F22F3EC1D00AF178E /* CategoriesTableViewController.swift in Sources */,
+				A993444522F3FC8700AF178E /* PersistentContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
