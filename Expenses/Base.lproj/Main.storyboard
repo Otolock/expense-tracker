@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8vM-8L-yPa">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -51,7 +51,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="New Transaction" id="dHu-Sz-3aD">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="07S-V8-cQi">
-                            <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="cancel:" destination="jZz-HK-LMh" id="svF-cv-u6X"/>
                             </connections>
@@ -70,8 +70,8 @@
             <objects>
                 <navigationController title="Transactions Navigation Controller" id="S90-ko-Wmh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="0Fd-aS-gdI"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3yL-xL-yXk">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="3yL-xL-yXk">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -109,7 +109,7 @@
                     <tabBarItem key="tabBarItem" title="" image="list.dash" catalog="system" largeContentSizeImage="list.dash" selectedImage="list.dash" id="awA-dS-Jah"/>
                     <navigationItem key="navigationItem" title="Transactions" id="qWq-xL-Ze2">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VBT-IK-gh7">
-                            <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="8lP-av-bsj" kind="presentation" identifier="NewTransaction" modalPresentationStyle="fullScreen" id="cUK-tt-Q7a"/>
                             </connections>
@@ -146,14 +146,73 @@
                     <tabBarItem key="tabBarItem" title="" image="square.grid.2x2" catalog="system" largeContentSizeImage="square.grid.2x2" selectedImage="square.grid.2x2.fill" id="Ag1-ok-HKb"/>
                     <navigationItem key="navigationItem" title="Categories" id="XzC-4j-oIZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vKw-34-TOx">
-                            <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="h6W-yx-NiI" kind="presentation" identifier="NewCategory" modalPresentationStyle="fullScreen" id="Fvp-pr-VaA"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3Z-ls-B95" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5908" y="1124.6305418719212"/>
+            <point key="canvasLocation" x="5881" y="1125"/>
+        </scene>
+        <!--New Category-->
+        <scene sceneID="Zdq-bz-MQh">
+            <objects>
+                <tableViewController id="mhE-49-deU" customClass="CategoryDetailTableViewController" customModule="expenses" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="w5i-UI-BVW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <sections>
+                            <tableViewSection id="B9P-2B-Pkn">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3h9-qy-77d">
+                                        <rect key="frame" x="0.0" y="18" width="375" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3h9-qy-77d" id="Dhy-7Q-mA3">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="frh-Fu-XYK">
+                                        <rect key="frame" x="0.0" y="61.666667938232422" width="375" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="frh-Fu-XYK" id="Fie-lK-xkx">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="sih-ME-Ijm">
+                                        <rect key="frame" x="0.0" y="105.33333587646484" width="375" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sih-ME-Ijm" id="ndc-L5-SN3">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="mhE-49-deU" id="weA-Fd-kGU"/>
+                            <outlet property="delegate" destination="mhE-49-deU" id="kok-U5-w30"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="New Category" id="bFA-sv-j8s">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tHn-Jp-ddM">
+                            <color key="tintColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="cancel:" destination="mhE-49-deU" id="d5d-Hd-ggE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OWB-9G-FGm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6823" y="1825"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="6B4-dt-Eju">
@@ -161,6 +220,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8vM-8L-yPa" customClass="TabBarViewController" customModule="expenses" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9Ll-gL-uwa">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -179,8 +239,8 @@
                 <navigationController title="Categories Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="4cu-Fx-zAu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" id="U8U-wB-ijy"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6mg-EB-wNJ">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="6mg-EB-wNJ">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -210,7 +270,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WlK-0i-uB9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5880.8000000000002" y="384.97536945812811"/>
+            <point key="canvasLocation" x="5881" y="385"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Rfz-CH-k9h">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h6W-yx-NiI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bhn-eS-fDm">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mhE-49-deU" kind="relationship" relationship="rootViewController" id="PQm-EV-mR5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lmM-VH-bsf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5881" y="1825"/>
         </scene>
     </scenes>
     <resources>

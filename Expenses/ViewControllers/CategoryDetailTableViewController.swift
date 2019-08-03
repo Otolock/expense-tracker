@@ -1,16 +1,16 @@
 //
-//  CategoriesTableViewController.swift
+//  CategoryDetailTableViewController.swift
 //  expenses
 //
-//  Created by Antonio Santos on 8/1/19.
+//  Created by Antonio Santos on 8/3/19.
 //  Copyright © 2019 Antonio Santos. All rights reserved.
 //
 
 import UIKit
 import CoreData
-import os.log
 
-class CategoriesTableViewController: UITableViewController {
+class CategoryDetailTableViewController: UITableViewController {
+    var category: Category!
     var container: NSPersistentContainer!
 
     override func viewDidLoad() {
@@ -83,27 +83,19 @@ class CategoriesTableViewController: UITableViewController {
     }
     */
 
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier! {
-        // this passes a reference to a new Entry to the CategoryDetailViewController
-        case "NewCategory":
-            os_log("Adding a new category.", log: OSLog.default, type: .debug)
-            
-            guard let destination = segue.destination as? UINavigationController else {
-                fatalError("Unexpected Destination: \(segue.destination)")
-            }
-            
-            guard let targetController = destination.topViewController as? CategoryDetailTableViewController else {
-                fatalError("Unexpected Target Controller: \(destination.topViewController!)")
-            }
-            
-            targetController.container = container
-        default:
-            print("Unknown segue: \(segue.identifier!)")
-        }
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+    
+    // MARK: -IBActions
+    @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 
 }
