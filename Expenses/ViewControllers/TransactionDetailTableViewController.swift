@@ -9,18 +9,30 @@
 import UIKit
 import CoreData
 
-class TransactionDetailTableViewController: UITableViewController {
+class TransactionDetailTableViewController: UITableViewController, UITextFieldDelegate {
     var transaction: Transaction!
     var container: NSPersistentContainer!
     
     // MARK: - IBOutlets
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var transactionTypeSwitch: UISwitch!
+    @IBOutlet weak var transactionAmountTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         guard container != nil else {
             fatalError("This view needs a persistent container.")
         }
+        
+        // Set the switch to OFF position
+        transactionTypeSwitch.isOn = false
+        
+        self.transactionAmountTextField.delegate = self
+        transactionAmountTextField.text = "$0.00"
+        
+        updateTextFieldColor(isOn: transactionTypeSwitch.isOn)
+        
+        transactionAmountTextField.becomeFirstResponder()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -96,8 +108,37 @@ class TransactionDetailTableViewController: UITableViewController {
     }
     */
 
-    // MARK: -IBActions
+    // MARK: - IBActions
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func switchToggled(_ sender: UISwitch) {
+        updateTextFieldColor(isOn: sender.isOn)
+    }
+    
+    // MARK: - Helper Functions
+    private func updateTextFieldColor(isOn: Bool) {
+        if (isOn) {
+            transactionAmountTextField.textColor = .systemGreen
+        } else {
+            transactionAmountTextField.textColor = .systemRed
+        }
+    }
+    
+    // MARK: - UITextFieldDelegate
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let char = string.cString(using: String.Encoding.utf8)
+        let isBackSpace = strcmp(char, "\\b") == -92
+        
+        if let text = textField.text {
+            if (isBackSpace) {
+                textField.text = Helper.updateFormattedNumber(from: String(text.dropLast()), add: "")
+                return false
+            } else {
+                textField.text = Helper.updateFormattedNumber(from: text, add: string)
+                return false
+            }
+        } else { return true }
     }
 }
