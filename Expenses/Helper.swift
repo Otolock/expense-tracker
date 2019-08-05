@@ -9,38 +9,36 @@
 import Foundation
 
 class Helper {
-    enum FormatNumberError: Error {
+    enum ConversionError: Error {
         case InvalidString
+        case UnknownError
     }
     
-    /// Takes a string argument and returns a Double with decimal points formatted from right to left.
-    ///  Input 1234 would result in 12.34
-    /// - Parameter from: Any string that can be converted to a double.
-    static func formatNumber(_ from: String) throws -> String {
-        guard let number = Double(from) else {
-            throw FormatNumberError.InvalidString
-        }
+    /// Converts a string numeral such as "$15.99" and adds the number given to it to return "$159.9x"
+    /// - Parameter from: A string represented the number to work from.
+    /// - Parameter add: A string representing the number to be added.
+    static func convertStringNumeralToCurrency(from: String, add: String) throws -> String {
+        let mutatedFrom = removePunctuation(from) + add
         
-        let decimalNumber = number / 100.00
+        guard let number = Double(mutatedFrom) else {
+            throw ConversionError.InvalidString
+        }
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currency
         
-        return numberFormatter.string(from: decimalNumber as NSNumber) ?? "0.00"
+        let decimalNumber = (number / 100)
+        let formattedString = numberFormatter.string(from: NSNumber(value: decimalNumber))
+        
+        return formattedString!
     }
     
-    /// Takes a string formatted as a dollar value and appends a new number to return as the new dollar value
-    /// - Parameter from: The formatted string to work from
-    /// - Parameter add: The number to be added to the strings
-    static func updateFormattedNumber(from: String, add: String) -> String {
-        let MAX_LENGTH = 10
-        let removedPunctuation = from.replacingOccurrences(of: "[.$,]", with: "", options: .regularExpression)
+    
+    /// Removes all - , . $ symbols from a String
+    /// - Parameter from: The string to remove punctuation from.
+    static func removePunctuation(_ from: String) -> String {
+        let punctuationRegex = "[-,.$]"
         
-        // limit max number to $999,999,999.99
-        if (removedPunctuation.count <= MAX_LENGTH) {
-            return(try! formatNumber(removedPunctuation + add))
-        } else {
-            return (try! formatNumber(removedPunctuation))
-        }
+        return from.replacingOccurrences(of: punctuationRegex, with: "", options: .regularExpression)
     }
 }
