@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A91D1D9922FBBEF60081175F /* PayeesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D1D9822FBBEF60081175F /* PayeesTableViewController.swift */; };
 		A9404D9122F67F2E00041C4F /* expensesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9404D9022F67F2E00041C4F /* expensesTests.swift */; };
 		A9404D9922F67FB700041C4F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9404D9822F67FB700041C4F /* Helper.swift */; };
 		A962A62722EBD0D2009DD3CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A962A62522EBD0D2009DD3CD /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A91D1D9822FBBEF60081175F /* PayeesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayeesTableViewController.swift; sourceTree = "<group>"; };
 		A9404D8E22F67F2E00041C4F /* expensesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = expensesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9404D9022F67F2E00041C4F /* expensesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expensesTests.swift; sourceTree = "<group>"; };
 		A9404D9222F67F2E00041C4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				A993444022F3EC7500AF178E /* TransactionDetailTableViewController.swift */,
 				A993444222F3FBBC00AF178E /* TabBarViewController.swift */,
 				A993444622F53E8000AF178E /* CategoryDetailTableViewController.swift */,
+				A91D1D9822FBBEF60081175F /* PayeesTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				A993444322F3FBBC00AF178E /* TabBarViewController.swift in Sources */,
 				A9B668C422E9287300DFF4D6 /* Benjamin.xcdatamodeld in Sources */,
 				A99C9D0F22EE8057007898C5 /* UITextField.swift in Sources */,
+				A91D1D9922FBBEF60081175F /* PayeesTableViewController.swift in Sources */,
 				A993443D22F3EBE500AF178E /* TransactionsTableViewController.swift in Sources */,
 				A993444722F53E8000AF178E /* CategoryDetailTableViewController.swift in Sources */,
 				A9B668BA22E9287300DFF4D6 /* AppDelegate.swift in Sources */,

@@ -8,15 +8,18 @@
 
 import UIKit
 import CoreData
+import os.log
 
 class TransactionDetailTableViewController: UITableViewController, UITextFieldDelegate {
-    var transaction: Transaction!
+    var transaction: NSManagedObject!
+    var payee: NSManagedObject!
     var container: NSPersistentContainer!
     
     // MARK: - IBOutlets
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var transactionTypeSwitch: UISwitch!
     @IBOutlet weak var transactionAmountTextField: UITextField!
+    @IBOutlet weak var payeeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,15 +46,19 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
 
     // MARK: - Table view data source
 
+    /*
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
     }
+    */
 
+    /*
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
+    */
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,15 +105,57 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        switch segue.identifier! {
+        case "SelectPayee":
+            os_log("Selecting payee.", log: OSLog.default, type: .debug)
+            
+            guard let destination = segue.destination as? UINavigationController else {
+                fatalError("Unexpected Destination: \(segue.destination)")
+            }
+            
+            guard let targetDestination = destination.topViewController as? PayeesTableViewController else {
+                fatalError("Unexpected Destination: \(segue.destination)")
+            }
+            
+            targetDestination.container = container
+            
+            if let _ = payee {
+                targetDestination.payee = payee as? Payee
+            }
+        default:
+            print("Unknown segue: \(segue.identifier!)")
+        }
     }
-    */
+    
+    @IBAction func unwindToTransactionDetail(sender: UIStoryboardSegue) {
+        let payeeView = sender.source as? PayeesTableViewController
+        if sender.source is PayeesTableViewController {
+            // Receive the transaction back from the TransactionDetailViewController, save it to the persistent storage and
+            // update Persistent Storage.
+            payee = payeeView?.payee
+            do {
+                try container.viewContext.save()
+//                updatePersistentStorage()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+            
+            payeeLabel.text = payee.value(forKey: "name") as? String
+
+//            // reset the tableView to defaults if no data message was displayed before loading data.
+//            if self.tableView.backgroundView != nil {
+//                self.tableView.backgroundView = nil
+//                self.tableView.separatorStyle = .singleLine
+//            }
+//            self.tableView.reloadData()
+        }
+    }
 
     // MARK: - IBActions
     @IBAction func cancel(_ sender: Any) {
@@ -133,11 +182,15 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
         
         if let text = textField.text {
             if (isBackSpace) {
-                textField.text = Helper.updateFormattedNumber(from: String(text.dropLast()), add: "")
+                textField.text = try? Helper.convertStringNumeralToCurrency(from: String(text.dropLast()), add: "")
                 return false
             } else {
-                textField.text = Helper.updateFormattedNumber(from: text, add: string)
-                return false
+                let digitCount = Helper.removePunctuation(textField.text!).count + string.count
+                
+                if (digitCount <= 11) {
+                    textField.text = try? Helper.convertStringNumeralToCurrency(from: text, add: string)
+                    return false
+                } else { return false }
             }
         } else { return true }
     }
