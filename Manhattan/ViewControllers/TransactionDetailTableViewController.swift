@@ -138,7 +138,7 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
         
         // Create Transaction
         transaction = NSEntityDescription.insertNewObject(forEntityName: "Transaction", into: container.viewContext) as! Transaction
-        transaction.setValue(transactionAmount, forKey: "amount")
+        transaction.setValue(transactionAmount?.doubleValue, forKey: "amount")
         transaction.setValue(Date(), forKey: "date")
         transaction.setValue(UUID(), forKey: "id")
         
