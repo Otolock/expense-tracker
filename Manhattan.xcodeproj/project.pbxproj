@@ -7,33 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A962A62722EBD0D2009DD3CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A962A62522EBD0D2009DD3CD /* Main.storyboard */; };
-		A962A62922EBD0DD009DD3CD /* TransactionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A62822EBD0DD009DD3CD /* TransactionDetailViewController.swift */; };
-		A99C9D0F22EE8057007898C5 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99C9D0E22EE8057007898C5 /* UITextField.swift */; };
-		A9B668BA22E9287300DFF4D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B668B922E9287300DFF4D6 /* AppDelegate.swift */; };
-		A9B668BC22E9287300DFF4D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B668BB22E9287300DFF4D6 /* SceneDelegate.swift */; };
-		A9B668C422E9287300DFF4D6 /* Benjamin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9B668C222E9287300DFF4D6 /* Benjamin.xcdatamodeld */; };
-		A9B668C622E9287500DFF4D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9B668C522E9287500DFF4D6 /* Assets.xcassets */; };
-		A9B668C922E9287500DFF4D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9B668C722E9287500DFF4D6 /* LaunchScreen.storyboard */; };
-		A9B668D322E9333400DFF4D6 /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B668D222E9333400DFF4D6 /* TransactionsTableViewController.swift */; };
+		A96EB711231624DC007C8BDA /* TransactionDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96EB710231624DC007C8BDA /* TransactionDetailTableViewController.swift */; };
+		A96EB71523163071007C8BDA /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96EB71423163071007C8BDA /* UITextField.swift */; };
+		A96EB717231630DC007C8BDA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96EB716231630DB007C8BDA /* Helper.swift */; };
+		A998DEA623109FA200F49254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A998DEA523109FA200F49254 /* AppDelegate.swift */; };
+		A998DEA823109FA200F49254 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A998DEA723109FA200F49254 /* SceneDelegate.swift */; };
+		A998DEAA23109FA200F49254 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A998DEA923109FA200F49254 /* TransactionsViewController.swift */; };
+		A998DEAD23109FA200F49254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A998DEAB23109FA200F49254 /* Main.storyboard */; };
+		A998DEB023109FA200F49254 /* Manhattan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A998DEAE23109FA200F49254 /* Manhattan.xcdatamodeld */; };
+		A998DEB223109FA600F49254 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A998DEB123109FA600F49254 /* Assets.xcassets */; };
+		A998DEB523109FA600F49254 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A998DEB323109FA600F49254 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A962A62622EBD0D2009DD3CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A962A62822EBD0DD009DD3CD /* TransactionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailViewController.swift; sourceTree = "<group>"; };
-		A99C9D0E22EE8057007898C5 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
-		A9B668B622E9287300DFF4D6 /* expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9B668B922E9287300DFF4D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A9B668BB22E9287300DFF4D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A9B668C322E9287300DFF4D6 /* expenses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = expenses.xcdatamodel; sourceTree = "<group>"; };
-		A9B668C522E9287500DFF4D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A9B668C822E9287500DFF4D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A9B668CA22E9287500DFF4D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A9B668D222E9333400DFF4D6 /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewController.swift; sourceTree = "<group>"; };
+		A96EB710231624DC007C8BDA /* TransactionDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailTableViewController.swift; sourceTree = "<group>"; };
+		A96EB71423163071007C8BDA /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UITextField.swift; path = Extensions/UITextField.swift; sourceTree = "<group>"; };
+		A96EB716231630DB007C8BDA /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		A998DEA223109FA200F49254 /* Manhattan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Manhattan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A998DEA523109FA200F49254 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A998DEA723109FA200F49254 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A998DEA923109FA200F49254 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
+		A998DEAC23109FA200F49254 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A998DEAF23109FA200F49254 /* Manhattan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Manhattan.xcdatamodel; sourceTree = "<group>"; };
+		A998DEB123109FA600F49254 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A998DEB423109FA600F49254 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A998DEB623109FA600F49254 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A9B668B322E9287300DFF4D6 /* Frameworks */ = {
+		A998DE9F23109FA200F49254 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -43,99 +45,84 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A95B623E22EAB1040089D47A /* ViewControllers */ = {
+		A96EB70F231624C1007C8BDA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A962A62822EBD0DD009DD3CD /* TransactionDetailViewController.swift */,
-				A9B668D222E9333400DFF4D6 /* TransactionsTableViewController.swift */,
+				A998DEA923109FA200F49254 /* TransactionsViewController.swift */,
+				A96EB710231624DC007C8BDA /* TransactionDetailTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		A95B624022EAB1270089D47A /* Models */ = {
+		A998DE9923109FA200F49254 = {
 			isa = PBXGroup;
 			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		A962A62A22EBD499009DD3CD /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				A99C9D0E22EE8057007898C5 /* UITextField.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		A9B668AD22E9287300DFF4D6 = {
-			isa = PBXGroup;
-			children = (
-				A9B668B822E9287300DFF4D6 /* Expenses */,
-				A9B668B722E9287300DFF4D6 /* Products */,
+				A998DEA423109FA200F49254 /* Manhattan */,
+				A998DEA323109FA200F49254 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A9B668B722E9287300DFF4D6 /* Products */ = {
+		A998DEA323109FA200F49254 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A9B668B622E9287300DFF4D6 /* expenses.app */,
+				A998DEA223109FA200F49254 /* Manhattan.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A9B668B822E9287300DFF4D6 /* Expenses */ = {
+		A998DEA423109FA200F49254 /* Manhattan */ = {
 			isa = PBXGroup;
 			children = (
-				A962A62A22EBD499009DD3CD /* Extensions */,
-				A95B624022EAB1270089D47A /* Models */,
-				A95B623E22EAB1040089D47A /* ViewControllers */,
-				A9B668B922E9287300DFF4D6 /* AppDelegate.swift */,
-				A9B668BB22E9287300DFF4D6 /* SceneDelegate.swift */,
-				A9B668C522E9287500DFF4D6 /* Assets.xcassets */,
-				A9B668C722E9287500DFF4D6 /* LaunchScreen.storyboard */,
-				A962A62522EBD0D2009DD3CD /* Main.storyboard */,
-				A9B668CA22E9287500DFF4D6 /* Info.plist */,
-				A9B668C222E9287300DFF4D6 /* Benjamin.xcdatamodeld */,
+				A96EB70F231624C1007C8BDA /* ViewControllers */,
+				A998DEA523109FA200F49254 /* AppDelegate.swift */,
+				A96EB716231630DB007C8BDA /* Helper.swift */,
+				A998DEA723109FA200F49254 /* SceneDelegate.swift */,
+				A998DEAB23109FA200F49254 /* Main.storyboard */,
+				A998DEB123109FA600F49254 /* Assets.xcassets */,
+				A998DEB323109FA600F49254 /* LaunchScreen.storyboard */,
+				A998DEB623109FA600F49254 /* Info.plist */,
+				A998DEAE23109FA200F49254 /* Manhattan.xcdatamodeld */,
+				A96EB71423163071007C8BDA /* UITextField.swift */,
 			);
-			path = Expenses;
+			path = Manhattan;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A9B668B522E9287300DFF4D6 /* expenses */ = {
+		A998DEA123109FA200F49254 /* Manhattan */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A9B668CD22E9287500DFF4D6 /* Build configuration list for PBXNativeTarget "expenses" */;
+			buildConfigurationList = A998DEB923109FA600F49254 /* Build configuration list for PBXNativeTarget "Manhattan" */;
 			buildPhases = (
-				A9B668B222E9287300DFF4D6 /* Sources */,
-				A9B668B322E9287300DFF4D6 /* Frameworks */,
-				A9B668B422E9287300DFF4D6 /* Resources */,
+				A998DE9E23109FA200F49254 /* Sources */,
+				A998DE9F23109FA200F49254 /* Frameworks */,
+				A998DEA023109FA200F49254 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = expenses;
-			productName = expenses;
-			productReference = A9B668B622E9287300DFF4D6 /* expenses.app */;
+			name = Manhattan;
+			productName = Manhattan;
+			productReference = A998DEA223109FA200F49254 /* Manhattan.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A9B668AE22E9287300DFF4D6 /* Project object */ = {
+		A998DE9A23109FA200F49254 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Antonio Santos";
 				TargetAttributes = {
-					A9B668B522E9287300DFF4D6 = {
+					A998DEA123109FA200F49254 = {
 						CreatedOnToolsVersion = 11.0;
 					};
 				};
 			};
-			buildConfigurationList = A9B668B122E9287300DFF4D6 /* Build configuration list for PBXProject "expenses" */;
+			buildConfigurationList = A998DE9D23109FA200F49254 /* Build configuration list for PBXProject "Manhattan" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -143,58 +130,59 @@
 				en,
 				Base,
 			);
-			mainGroup = A9B668AD22E9287300DFF4D6;
-			productRefGroup = A9B668B722E9287300DFF4D6 /* Products */;
+			mainGroup = A998DE9923109FA200F49254;
+			productRefGroup = A998DEA323109FA200F49254 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A9B668B522E9287300DFF4D6 /* expenses */,
+				A998DEA123109FA200F49254 /* Manhattan */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A9B668B422E9287300DFF4D6 /* Resources */ = {
+		A998DEA023109FA200F49254 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A962A62722EBD0D2009DD3CD /* Main.storyboard in Resources */,
-				A9B668C922E9287500DFF4D6 /* LaunchScreen.storyboard in Resources */,
-				A9B668C622E9287500DFF4D6 /* Assets.xcassets in Resources */,
+				A998DEB523109FA600F49254 /* LaunchScreen.storyboard in Resources */,
+				A998DEB223109FA600F49254 /* Assets.xcassets in Resources */,
+				A998DEAD23109FA200F49254 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A9B668B222E9287300DFF4D6 /* Sources */ = {
+		A998DE9E23109FA200F49254 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9B668C422E9287300DFF4D6 /* Benjamin.xcdatamodeld in Sources */,
-				A99C9D0F22EE8057007898C5 /* UITextField.swift in Sources */,
-				A9B668BA22E9287300DFF4D6 /* AppDelegate.swift in Sources */,
-				A962A62922EBD0DD009DD3CD /* TransactionDetailViewController.swift in Sources */,
-				A9B668D322E9333400DFF4D6 /* TransactionsTableViewController.swift in Sources */,
-				A9B668BC22E9287300DFF4D6 /* SceneDelegate.swift in Sources */,
+				A998DEAA23109FA200F49254 /* TransactionsViewController.swift in Sources */,
+				A96EB717231630DC007C8BDA /* Helper.swift in Sources */,
+				A998DEA623109FA200F49254 /* AppDelegate.swift in Sources */,
+				A998DEB023109FA200F49254 /* Manhattan.xcdatamodeld in Sources */,
+				A96EB711231624DC007C8BDA /* TransactionDetailTableViewController.swift in Sources */,
+				A998DEA823109FA200F49254 /* SceneDelegate.swift in Sources */,
+				A96EB71523163071007C8BDA /* UITextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A962A62522EBD0D2009DD3CD /* Main.storyboard */ = {
+		A998DEAB23109FA200F49254 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A962A62622EBD0D2009DD3CD /* Base */,
+				A998DEAC23109FA200F49254 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		A9B668C722E9287500DFF4D6 /* LaunchScreen.storyboard */ = {
+		A998DEB323109FA600F49254 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A9B668C822E9287500DFF4D6 /* Base */,
+				A998DEB423109FA600F49254 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -202,7 +190,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A9B668CB22E9287500DFF4D6 /* Debug */ = {
+		A998DEB723109FA600F49254 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -262,7 +250,7 @@
 			};
 			name = Debug;
 		};
-		A9B668CC22E9287500DFF4D6 /* Release */ = {
+		A998DEB823109FA600F49254 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -316,36 +304,36 @@
 			};
 			name = Release;
 		};
-		A9B668CE22E9287500DFF4D6 /* Debug */ = {
+		A998DEBA23109FA600F49254 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DSYCL96HES;
-				INFOPLIST_FILE = expenses/Info.plist;
+				INFOPLIST_FILE = Manhattan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.antoniosantos.Benjamin;
+				PRODUCT_BUNDLE_IDENTIFIER = io.antoniosantos.Manhattan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		A9B668CF22E9287500DFF4D6 /* Release */ = {
+		A998DEBB23109FA600F49254 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DSYCL96HES;
-				INFOPLIST_FILE = expenses/Info.plist;
+				INFOPLIST_FILE = Manhattan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.antoniosantos.Benjamin;
+				PRODUCT_BUNDLE_IDENTIFIER = io.antoniosantos.Manhattan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -355,20 +343,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A9B668B122E9287300DFF4D6 /* Build configuration list for PBXProject "expenses" */ = {
+		A998DE9D23109FA200F49254 /* Build configuration list for PBXProject "Manhattan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A9B668CB22E9287500DFF4D6 /* Debug */,
-				A9B668CC22E9287500DFF4D6 /* Release */,
+				A998DEB723109FA600F49254 /* Debug */,
+				A998DEB823109FA600F49254 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A9B668CD22E9287500DFF4D6 /* Build configuration list for PBXNativeTarget "expenses" */ = {
+		A998DEB923109FA600F49254 /* Build configuration list for PBXNativeTarget "Manhattan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A9B668CE22E9287500DFF4D6 /* Debug */,
-				A9B668CF22E9287500DFF4D6 /* Release */,
+				A998DEBA23109FA600F49254 /* Debug */,
+				A998DEBB23109FA600F49254 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -376,17 +364,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		A9B668C222E9287300DFF4D6 /* Benjamin.xcdatamodeld */ = {
+		A998DEAE23109FA200F49254 /* Manhattan.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				A9B668C322E9287300DFF4D6 /* expenses.xcdatamodel */,
+				A998DEAF23109FA200F49254 /* Manhattan.xcdatamodel */,
 			);
-			currentVersion = A9B668C322E9287300DFF4D6 /* expenses.xcdatamodel */;
-			path = Benjamin.xcdatamodeld;
+			currentVersion = A998DEAF23109FA200F49254 /* Manhattan.xcdatamodel */;
+			path = Manhattan.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = A9B668AE22E9287300DFF4D6 /* Project object */;
+	rootObject = A998DE9A23109FA200F49254 /* Project object */;
 }

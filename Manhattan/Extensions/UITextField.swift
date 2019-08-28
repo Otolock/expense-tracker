@@ -1,8 +1,8 @@
 //
 //  UITextField.swift
-//  expenses
+//  Manhattan
 //
-//  Created by Antonio Santos on 7/26/19.
+//  Created by Antonio Santos on 8/27/19.
 //  Copyright © 2019 Antonio Santos. All rights reserved.
 //
 

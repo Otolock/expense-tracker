@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  expenses
+//  Manhattan
 //
-//  Created by Antonio Santos on 7/24/19.
+//  Created by Antonio Santos on 8/23/19.
 //  Copyright © 2019 Antonio Santos. All rights reserved.
 //
 
@@ -18,6 +18,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        if let rootVC = self.window?.rootViewController as? UINavigationController {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            if let targetVC = rootVC.topViewController as? TransactionsViewController {
+                targetVC.container = appDelegate.persistentContainer
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -46,6 +53,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+
+        // Save changes in the application's managed object context when the application transitions to the background.
+        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
 
