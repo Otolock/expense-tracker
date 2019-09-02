@@ -17,6 +17,7 @@
 		A998DEB023109FA200F49254 /* Manhattan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A998DEAE23109FA200F49254 /* Manhattan.xcdatamodeld */; };
 		A998DEB223109FA600F49254 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A998DEB123109FA600F49254 /* Assets.xcassets */; };
 		A998DEB523109FA600F49254 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A998DEB323109FA600F49254 /* LaunchScreen.storyboard */; };
+		A9CF6A47231CB54500CB4F9C /* update_build_number.sh in Resources */ = {isa = PBXBuildFile; fileRef = A9CF6A46231CB54500CB4F9C /* update_build_number.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		A998DEB123109FA600F49254 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A998DEB423109FA600F49254 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A998DEB623109FA600F49254 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9CF6A46231CB54500CB4F9C /* update_build_number.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_build_number.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 		A998DE9923109FA200F49254 = {
 			isa = PBXGroup;
 			children = (
+				A9CF6A45231CB53100CB4F9C /* Scripts */,
 				A998DEA423109FA200F49254 /* Manhattan */,
 				A998DEA323109FA200F49254 /* Products */,
 			);
@@ -87,6 +90,14 @@
 			path = Manhattan;
 			sourceTree = "<group>";
 		};
+		A9CF6A45231CB53100CB4F9C /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				A9CF6A46231CB54500CB4F9C /* update_build_number.sh */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -97,6 +108,7 @@
 				A998DE9E23109FA200F49254 /* Sources */,
 				A998DE9F23109FA200F49254 /* Frameworks */,
 				A998DEA023109FA200F49254 /* Resources */,
+				A9CF6A44231CB3D700CB4F9C /* Update Build Number */,
 			);
 			buildRules = (
 			);
@@ -146,12 +158,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				A998DEB523109FA600F49254 /* LaunchScreen.storyboard in Resources */,
+				A9CF6A47231CB54500CB4F9C /* update_build_number.sh in Resources */,
 				A998DEB223109FA600F49254 /* Assets.xcassets in Resources */,
 				A998DEAD23109FA200F49254 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A9CF6A44231CB3D700CB4F9C /* Update Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n/Users/antonio/Code/Manhattan/Scripts/update_build_number.sh development\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A998DE9E23109FA200F49254 /* Sources */ = {
