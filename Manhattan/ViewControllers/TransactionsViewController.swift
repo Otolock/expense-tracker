@@ -14,9 +14,15 @@ class TransactionsViewController: UITableViewController {
     var container: NSPersistentContainer!
     var transactions = [Transaction]()
     var account: Account!
+    var accountBalance = 0.0
+    
+    let numberFormatter = NumberFormatter()
+    
+    @IBOutlet weak var accountBalanceTextField: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        accountBalance = 0.0
         
         // Create Default Account on first launch
         if Helper.isFirstLaunch() {
@@ -38,6 +44,11 @@ class TransactionsViewController: UITableViewController {
             if let _ = account.transactions {
                 for transaction in (account.transactions?.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]))! {
                     transactions.append(transaction as! Transaction)
+                    accountBalance += (transaction as! Transaction).amount
+                    
+                    numberFormatter.numberStyle = .currency
+                    
+                    accountBalanceTextField.text = numberFormatter.string(from: NSNumber(value: accountBalance))
                 }
             }
         }
@@ -89,7 +100,6 @@ class TransactionsViewController: UITableViewController {
     //    }
     //
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return transactions.count
     }
     
@@ -110,7 +120,6 @@ class TransactionsViewController: UITableViewController {
         cell.categoryLabel!.text = category.value(forKey: "name") as? String
         
         // format transactionAmount to currency.
-        let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currency
         
         guard let transactionAmount = transaction.value(forKey: "amount") as? Double else {
