@@ -183,7 +183,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n/Users/antonio/Code/Manhattan/Scripts/update_build_number.sh development\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n/Users/antonio/Code/Manhattan/Scripts/update_build_number.sh master\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
