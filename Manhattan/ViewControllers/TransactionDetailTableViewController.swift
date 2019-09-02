@@ -134,11 +134,21 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currency
-        let transactionAmount = numberFormatter.number(from: amountTextField.text!)
+        guard let transactionAmount = numberFormatter.number(from: amountTextField.text!) else {
+            fatalError("Unable to convert transaction amount to number")
+        }
         
         // Create Transaction
         transaction = NSEntityDescription.insertNewObject(forEntityName: "Transaction", into: container.viewContext) as? Transaction
-        transaction.setValue(transactionAmount?.doubleValue, forKey: "amount")
+        
+        // The transaction type switch determines if a transaction is a debit or a credit.
+        if transactionTypeSwitch.isOn {
+            transaction.amount = transactionAmount.doubleValue
+        } else {
+            transaction.amount = (transactionAmount.doubleValue * -1.0)
+        }
+        
+//        transaction.setValue(transactionAmount?.doubleValue, forKey: "amount")
         transaction.setValue(Date(), forKey: "date")
         transaction.setValue(UUID(), forKey: "id")
         
