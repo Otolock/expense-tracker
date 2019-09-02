@@ -12,7 +12,7 @@ import os.log
 
 class TransactionDetailTableViewController: UITableViewController, UITextFieldDelegate {
     var container: NSPersistentContainer!
-    var transaction: NSManagedObject!
+    var transaction: Transaction!
     var payee: NSManagedObject!
     var category: NSManagedObject!
     var account: NSManagedObject!
@@ -100,7 +100,7 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
         if Helper.doesEntityExist(entity: "Payee", with: payeeTextField.text!, container: container) {
             let payeesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Payee")
             payeesFetch.predicate = NSPredicate(format: "name == %@", payeeTextField.text!)
-             
+            
             do {
                 let fetchedPayees = try container.viewContext.fetch(payeesFetch) as! [Payee]
                 payee = fetchedPayees.first
@@ -118,7 +118,7 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
         if Helper.doesEntityExist(entity: "Category", with: categoryTextField.text!, container: container) {
             let categoriesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
             categoriesFetch.predicate = NSPredicate(format: "name == %@", categoryTextField.text!)
-             
+            
             do {
                 let fetchedCategories = try container.viewContext.fetch(categoriesFetch) as! [Category]
                 category = fetchedCategories.first
@@ -137,7 +137,7 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
         let transactionAmount = numberFormatter.number(from: amountTextField.text!)
         
         // Create Transaction
-        transaction = NSEntityDescription.insertNewObject(forEntityName: "Transaction", into: container.viewContext) as! Transaction
+        transaction = NSEntityDescription.insertNewObject(forEntityName: "Transaction", into: container.viewContext) as? Transaction
         transaction.setValue(transactionAmount?.doubleValue, forKey: "amount")
         transaction.setValue(Date(), forKey: "date")
         transaction.setValue(UUID(), forKey: "id")
