@@ -41,15 +41,14 @@ class TransactionsViewController: UITableViewController {
                 fatalError("Unable to fetch default account.")
             }
             
-            if let _ = account.transactions {
-                for transaction in (account.transactions?.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]))! {
-                    transactions.append(transaction as! Transaction)
-                    accountBalance += (transaction as! Transaction).amount
-                    
-                    numberFormatter.numberStyle = .currency
-                    
-                    accountBalanceTextField.text = numberFormatter.string(from: NSNumber(value: accountBalance))
-                }
+            print("Got \(account.transactions?.count ?? 0) transaction(s)")
+            
+            transactions = fetchTransactions(account: account)
+            
+            for transaction in transactions {
+                accountBalance += transaction.amount
+                numberFormatter.numberStyle = .currency
+                accountBalanceTextField.text = numberFormatter.string(from: NSNumber(value: accountBalance))
             }
         }
     }
@@ -89,6 +88,17 @@ class TransactionsViewController: UITableViewController {
         } catch {
             fatalError("Failed to fetch employees: \(error)")
         }
+    }
+    
+    private func fetchTransactions(account: Account) -> [Transaction] {
+        var fetchedTransactions = [Transaction]()
+        if let _ = account.transactions {
+            for transaction in (account.transactions?.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]))! {
+                fetchedTransactions.append(transaction as! Transaction)
+            }
+        }
+        
+        return fetchedTransactions
     }
 
     
@@ -132,6 +142,23 @@ class TransactionsViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            accountBalance -= transactions[indexPath.row].amount
+            numberFormatter.numberStyle = .currency
+            
+            accountBalanceTextField.text = numberFormatter.string(from: NSNumber(value: accountBalance))
+            
+            container.viewContext.delete(transactions[indexPath.row])
+            transactions.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            saveContext()
+        default:
+            return
+        }
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -150,6 +177,7 @@ class TransactionsViewController: UITableViewController {
     }
     
     @IBAction func unwindToTransactionList(sender: UIStoryboardSegue) {
+        print("Unwinding with \(transactions.count) transaction(s)!")
         if sender.source is TransactionDetailTableViewController {
             saveContext()
             
