@@ -22,7 +22,7 @@
 
 /* Begin PBXFileReference section */
 		A96EB710231624DC007C8BDA /* TransactionDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailTableViewController.swift; sourceTree = "<group>"; };
-		A96EB71423163071007C8BDA /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UITextField.swift; path = Extensions/UITextField.swift; sourceTree = "<group>"; };
+		A96EB71423163071007C8BDA /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		A96EB716231630DB007C8BDA /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		A998DEA223109FA200F49254 /* Manhattan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Manhattan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A998DEA523109FA200F49254 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A94D8EDC2320915800E5B466 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A96EB71423163071007C8BDA /* UITextField.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A96EB70F231624C1007C8BDA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +67,7 @@
 		A998DE9923109FA200F49254 = {
 			isa = PBXGroup;
 			children = (
+				A94D8EDC2320915800E5B466 /* Extensions */,
 				A9CF6A45231CB53100CB4F9C /* Scripts */,
 				A998DEA423109FA200F49254 /* Manhattan */,
 				A998DEA323109FA200F49254 /* Products */,
@@ -85,7 +94,6 @@
 				A998DEB323109FA600F49254 /* LaunchScreen.storyboard */,
 				A998DEB623109FA600F49254 /* Info.plist */,
 				A998DEAE23109FA200F49254 /* Manhattan.xcdatamodeld */,
-				A96EB71423163071007C8BDA /* UITextField.swift */,
 			);
 			path = Manhattan;
 			sourceTree = "<group>";
@@ -345,6 +353,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DSYCL96HES;
 				INFOPLIST_FILE = Manhattan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -363,6 +372,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DSYCL96HES;
 				INFOPLIST_FILE = Manhattan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

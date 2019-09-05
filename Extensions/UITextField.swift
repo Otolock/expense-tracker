@@ -16,6 +16,7 @@ extension UITextField {
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: myAction)
+        done.tintColor = .systemYellow
         
         var items = [UIBarButtonItem]()
         items.append(flexSpace)

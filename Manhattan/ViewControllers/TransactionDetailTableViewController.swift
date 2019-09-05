@@ -11,11 +11,11 @@ import CoreData
 import os.log
 
 class TransactionDetailTableViewController: UITableViewController, UITextFieldDelegate {
-    var container: NSPersistentContainer!
-    var transaction: Transaction!
-    var payee: NSManagedObject!
-    var category: NSManagedObject!
-    var account: NSManagedObject!
+    weak var container: NSPersistentContainer!
+    weak var transaction: Transaction!
+    var payee: Payee!
+    var category: Category!
+    weak var account: NSManagedObject!
     
     // MARK: - IBOutlets
     @IBOutlet weak var amountTextField: UITextField!
@@ -35,12 +35,42 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
             fatalError("This view needs an account.")
         }
         
-        updateTextFieldColor(isOn: transactionTypeSwitch.isOn)
+        if let _ = transaction {
+            if (transaction.amount > 0) {
+                updateTextFieldColor(isOn: true)
+            } else {
+                updateTextFieldColor(isOn: false)
+            }
+            
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .currency
+            
+            amountTextField.text = numberFormatter.string(from: NSNumber(value: transaction.amount))
+            
+            if let _ = transaction.payee {
+                payee = transaction.payee
+                payeeTextField.text = payee.name
+            }
+            
+            if let _ = transaction.category {
+                category = transaction.category
+                categoryTextField.text = category.name
+            }
+            
+            
+        } else {
+            updateTextFieldColor(isOn: transactionTypeSwitch.isOn)
+            amountTextField.text = "$0.00"
+        }
+        
         
         // Configure amountTextField
         self.amountTextField.delegate = self
         amountTextField.becomeFirstResponder()
         amountTextField.addDoneButtonToKeyboard(myAction: #selector(self.amountTextField.resignFirstResponder))
+        
+        self.payeeTextField.delegate = self
+        self.categoryTextField.delegate = self
         
     }
     
@@ -82,7 +112,16 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        switch textField.tag {
+        case 0:
+            payeeTextField.becomeFirstResponder()
+        case 1:
+            categoryTextField.becomeFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
     
     // MARK: - Navigation
@@ -109,7 +148,7 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
             }
         } else {
             os_log("Creating new payee.", log: .default, type: .debug )
-            payee = NSEntityDescription.insertNewObject(forEntityName: "Payee", into: container.viewContext) as! Payee
+            payee = NSEntityDescription.insertNewObject(forEntityName: "Payee", into: container.viewContext) as? Payee
             payee.setValue(UUID(), forKey: "id")
             payee.setValue(payeeTextField.text, forKey: "name")
         }
@@ -127,7 +166,7 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
             }
         } else {
             os_log("Creating new category.", log: .default, type: .debug )
-            category = NSEntityDescription.insertNewObject(forEntityName: "Category", into: container.viewContext) as! Category
+            category = NSEntityDescription.insertNewObject(forEntityName: "Category", into: container.viewContext) as? Category
             category.setValue(UUID(), forKey: "id")
             category.setValue(categoryTextField.text, forKey: "name")
         }
@@ -135,25 +174,37 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currency
         guard let transactionAmount = numberFormatter.number(from: amountTextField.text!) else {
-            fatalError("Unable to convert transaction amount to number")
+            fatalError("Unable to convert transaction amount to number.")
         }
         
-        // Create Transaction
-        transaction = NSEntityDescription.insertNewObject(forEntityName: "Transaction", into: container.viewContext) as? Transaction
-        
-        // The transaction type switch determines if a transaction is a debit or a credit.
-        if transactionTypeSwitch.isOn {
-            transaction.amount = transactionAmount.doubleValue
+        if let _ = transaction {
+            // The transaction type switch determines if a transaction is a debit or a credit.
+            if transactionTypeSwitch.isOn {
+                transaction.amount = transactionAmount.doubleValue
+            } else {
+                transaction.amount = (transactionAmount.doubleValue * -1.0)
+            }
+            
+            transaction.payee = payee
+            transaction.category = category
         } else {
-            transaction.amount = (transactionAmount.doubleValue * -1.0)
+            // Create Transaction
+            transaction = NSEntityDescription.insertNewObject(forEntityName: "Transaction", into: container.viewContext) as? Transaction
+            
+            // The transaction type switch determines if a transaction is a debit or a credit.
+            if transactionTypeSwitch.isOn {
+                transaction.amount = transactionAmount.doubleValue
+            } else {
+                transaction.amount = (transactionAmount.doubleValue * -1.0)
+            }
+            
+            //        transaction.setValue(transactionAmount?.doubleValue, forKey: "amount")
+            transaction.setValue(Date(), forKey: "date")
+            transaction.setValue(UUID(), forKey: "id")
+            
+            transaction.setValue(payee, forKey: "payee")
+            transaction.setValue(category, forKey: "category")
+            transaction.setValue(account, forKey: "account")
         }
-        
-//        transaction.setValue(transactionAmount?.doubleValue, forKey: "amount")
-        transaction.setValue(Date(), forKey: "date")
-        transaction.setValue(UUID(), forKey: "id")
-        
-        transaction.setValue(payee, forKey: "payee")
-        transaction.setValue(category, forKey: "category")
-        transaction.setValue(account, forKey: "account")
     }
 }

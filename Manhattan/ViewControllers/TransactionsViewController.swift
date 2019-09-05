@@ -139,6 +139,13 @@ class TransactionsViewController: UITableViewController {
         
         cell.amountLabel.text = numberFormatter.string(from: transactionAmount as NSNumber? ?? 0.00)
         
+        // Change text color for dollar amounts.
+        if transactionAmount > 0 {
+            cell.amountLabel.textColor = .systemGreen
+        } else {
+            cell.amountLabel.textColor = .systemRed
+        }
+        
         return cell
     }
     
@@ -171,6 +178,25 @@ class TransactionsViewController: UITableViewController {
             
             destination.container = container
             destination.account = account
+        case "ShowDetail":
+            os_log("Editing existing transaction.", log: .default, type: .debug)
+            
+            guard let destination = segue.destination as? TransactionDetailTableViewController else {
+                fatalError("Unexpected Destination: \(segue.destination)")
+            }
+            
+            guard let selectedTransactionCell = sender as? TransactionTableViewCell else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+
+            guard let indexPath = tableView.indexPath(for: selectedTransactionCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            destination.container = container
+            destination.account = account
+            destination.transaction = transactions[indexPath.row]
+            
         default:
             os_log("A segue was attempted with an unknown segue.", log: .default, type: .debug)
         }
@@ -181,9 +207,7 @@ class TransactionsViewController: UITableViewController {
         if sender.source is TransactionDetailTableViewController {
             saveContext()
             
-            if let senderVC = sender.source as? TransactionDetailTableViewController {
-                transactions.insert(senderVC.transaction, at: 0)
-            }
+            transactions = fetchTransactions(account: account)
             
             self.tableView.reloadData()
         }
