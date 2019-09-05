@@ -38,8 +38,10 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
         if let _ = transaction {
             if (transaction.amount > 0) {
                 updateTextFieldColor(isOn: true)
+                transactionTypeSwitch.isOn = true
             } else {
                 updateTextFieldColor(isOn: false)
+                transactionTypeSwitch.isOn = false
             }
             
             let numberFormatter = NumberFormatter()
