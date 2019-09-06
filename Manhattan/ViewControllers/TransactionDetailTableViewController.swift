@@ -34,20 +34,25 @@ class TransactionDetailTableViewController: UITableViewController, UITextFieldDe
         guard account != nil else {
             fatalError("This view needs an account.")
         }
+
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
         
         if let _ = transaction {
             if (transaction.amount > 0) {
                 updateTextFieldColor(isOn: true)
                 transactionTypeSwitch.isOn = true
+                amountTextField.text = numberFormatter.string(from: NSNumber(value: transaction.amount))
             } else {
                 updateTextFieldColor(isOn: false)
                 transactionTypeSwitch.isOn = false
+                // this is a dirty fix, but due to the design of the string converter,
+                // negative numbers are not handled nicely. This makes sure no negative numbers
+                // are displayed in the amountTextField as this will cause issues if the user only changes
+                // the transaction type and does not edit the amount. 
+                amountTextField.text = numberFormatter.string(from: NSNumber(value: (transaction.amount * -1)))
             }
-            
-            let numberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = .currency
-            
-            amountTextField.text = numberFormatter.string(from: NSNumber(value: transaction.amount))
             
             if let _ = transaction.payee {
                 payee = transaction.payee
