@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A94EB75B2327409800880B74 /* AccountsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94EB75A2327409800880B74 /* AccountsTableViewController.swift */; };
+		A94EB75D2329B3BF00880B74 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94EB75C2329B3BF00880B74 /* AccountTableViewController.swift */; };
 		A96EB711231624DC007C8BDA /* TransactionDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96EB710231624DC007C8BDA /* TransactionDetailTableViewController.swift */; };
 		A96EB71523163071007C8BDA /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96EB71423163071007C8BDA /* UITextField.swift */; };
 		A96EB717231630DC007C8BDA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96EB716231630DB007C8BDA /* Helper.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A94EB75A2327409800880B74 /* AccountsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsTableViewController.swift; sourceTree = "<group>"; };
+		A94EB75C2329B3BF00880B74 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		A96EB710231624DC007C8BDA /* TransactionDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailTableViewController.swift; sourceTree = "<group>"; };
 		A96EB71423163071007C8BDA /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		A96EB716231630DB007C8BDA /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 			children = (
 				A998DEA923109FA200F49254 /* TransactionsViewController.swift */,
 				A96EB710231624DC007C8BDA /* TransactionDetailTableViewController.swift */,
+				A94EB75A2327409800880B74 /* AccountsTableViewController.swift */,
+				A94EB75C2329B3BF00880B74 /* AccountTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -201,12 +207,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A998DEAA23109FA200F49254 /* TransactionsViewController.swift in Sources */,
+				A94EB75B2327409800880B74 /* AccountsTableViewController.swift in Sources */,
 				A96EB717231630DC007C8BDA /* Helper.swift in Sources */,
 				A998DEA623109FA200F49254 /* AppDelegate.swift in Sources */,
 				A998DEB023109FA200F49254 /* Manhattan.xcdatamodeld in Sources */,
 				A96EB711231624DC007C8BDA /* TransactionDetailTableViewController.swift in Sources */,
 				A998DEA823109FA200F49254 /* SceneDelegate.swift in Sources */,
 				A96EB71523163071007C8BDA /* UITextField.swift in Sources */,
+				A94EB75D2329B3BF00880B74 /* AccountTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

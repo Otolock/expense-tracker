@@ -21,8 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let rootVC = self.window?.rootViewController as? UINavigationController {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            if let targetVC = rootVC.topViewController as? TransactionsViewController {
-                targetVC.container = appDelegate.persistentContainer
+            if let targetVC = rootVC.topViewController as? AccountsTableViewController {
+                targetVC.managedObjectContext = appDelegate.persistentContainer.viewContext
             }
         }
     }

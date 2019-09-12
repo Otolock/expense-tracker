@@ -24,32 +24,18 @@ class TransactionsViewController: UITableViewController {
         super.viewWillAppear(animated)
         accountBalance = 0.0
         
-        // Create Default Account on first launch
-        if Helper.isFirstLaunch() {
-            os_log("Creating Default account.", log: .default, type: .debug)
-            account = NSEntityDescription.insertNewObject(forEntityName: "Account", into: container.viewContext) as? Account
-            account.setValue(UUID(), forKey: "id")
-            account.setValue("Default", forKey: "name")
-            account.setValue(0.00, forKey: "balance")
-            saveContext()
-        } else {
-            os_log("Loading Default account.", log: .default, type: .debug)
-            
-            account = fetchAccount(accountName: "Default")
-            
-            guard account != nil else {
-                fatalError("Unable to fetch default account.")
-            }
-            
-            print("Got \(account.transactions?.count ?? 0) transaction(s)")
-            
-            transactions = fetchTransactions(account: account)
-            
-            for transaction in transactions {
-                accountBalance += transaction.amount
-                numberFormatter.numberStyle = .currency
-                accountBalanceTextField.text = numberFormatter.string(from: NSNumber(value: accountBalance))
-            }
+        guard account != nil else {
+            fatalError("Unable to fetch default account.")
+        }
+
+        print("Got \(account.transactions?.count ?? 0) transaction(s)")
+
+        transactions = fetchTransactions(account: account)
+
+        for transaction in transactions {
+            accountBalance += transaction.amount
+            numberFormatter.numberStyle = .currency
+            accountBalanceTextField.text = numberFormatter.string(from: NSNumber(value: accountBalance))
         }
     }
     
@@ -59,6 +45,8 @@ class TransactionsViewController: UITableViewController {
         guard container != nil else {
             fatalError("This view needs a persistent container.")
         }
+        
+        navigationItem.title = account?.name
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 55
